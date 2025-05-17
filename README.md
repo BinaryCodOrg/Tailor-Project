@@ -9,6 +9,10 @@ MongoDB, Expressjs, React/Recoil, Nodejs
 
 MERN stack is the idea of using Javascript/Node for fullstack web development. you will be able to see two folders Frontend and Backend
 
+## 📌 About the Project
+This project is a tailor management web portal designed to streamline and simplify the cloth stitching workflow. In Version 1, the portal allows tailors to perform full CRUD operations on stitching orders, manage order statuses, and easily search through existing records. It aims to bring structure and efficiency to tailoring tasks, replacing manual tracking with a digital solution.
+
+
 ## clone or download
 
 ```terminal
