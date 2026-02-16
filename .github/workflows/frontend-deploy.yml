@@ -3,7 +3,7 @@ name: Deploy Frontend to GitHub Pages
 on:
   push:
     branches:
-      - main
+      - master
     paths:
       - "Frontend/**"
       - ".github/workflows/frontend-deploy.yml"
@@ -38,10 +38,13 @@ jobs:
         working-directory: Frontend
         run: npm run build
 
+      - name: Check build output
+        run: ls -la Frontend/dist
+
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: Frontend/dist
+          path: ./Frontend/dist
 
   deploy:
     environment:
