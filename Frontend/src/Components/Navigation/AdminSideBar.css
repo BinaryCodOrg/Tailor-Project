@@ -1,0 +1,112 @@
+.admin-sidebar-root {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  padding: 18px 16px;
+  box-sizing: border-box;
+}
+
+.admin-sidebar-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 18px;
+}
+
+.admin-sidebar-logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.admin-sidebar-logo-icon {
+  width: 34px;
+  height: 34px;
+  border-radius: 12px;
+  background: linear-gradient(135deg, #22c55e, #16a34a);
+  color: #ffffff;
+  font-weight: 700;
+  font-size: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.admin-sidebar-logo-text {
+  display: flex;
+  flex-direction: column;
+}
+
+.admin-sidebar-logo-title {
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.admin-sidebar-logo-subtitle {
+  font-size: 11px;
+  color: #9ca3af;
+}
+
+.admin-sidebar-toggle {
+  border: none;
+  background: #f1f5f9;
+  width: 32px;
+  height: 32px;
+  border-radius: 999px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: #6b7280;
+}
+
+.admin-sidebar-menu {
+  border-inline-end: none !important;
+  flex: 1;
+}
+
+.admin-sidebar-footer-card {
+  margin-top: 18px;
+  padding: 14px 12px;
+  border-radius: 18px;
+  background: radial-gradient(circle at top left, #22c55e, #111827);
+  color: #e5e7eb;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.admin-sidebar-footer-badge {
+  align-self: flex-start;
+  padding: 2px 8px;
+  border-radius: 999px;
+  background: rgba(15, 23, 42, 0.7);
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.admin-sidebar-footer-title {
+  margin: 0;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.admin-sidebar-footer-text {
+  margin: 0;
+  font-size: 11px;
+  color: #e5e7eb;
+}
+
+.admin-sidebar-footer-button {
+  margin-top: 8px;
+  align-self: flex-start;
+  padding: 6px 14px;
+  font-size: 11px;
+  border-radius: 999px;
+  border: none;
+  background: #22c55e;
+  color: #ffffff;
+  cursor: pointer;
+}
+
