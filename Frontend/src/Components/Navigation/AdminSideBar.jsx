@@ -1,141 +1,244 @@
-import React from "react";
-import { Menu } from "antd";
+import React, { useState } from "react";
+import { useNavigate, useLocation } from "react-router-dom";
 import {
-  MdOutlineAccountBalanceWallet,
-  MdOutlineDesktopWindows,
-} from "react-icons/md";
-import {
-  RiAccountPinCircleFill,
-  RiAppsLine,
-  RiMenuFill,
-} from "react-icons/ri";
-import AdviserS1 from "../../assets/Images/logos/logo.png";
-import { useNavigate } from "react-router-dom";
-import { FaUsers } from "react-icons/fa";
-import { FaMoneyBillTransfer } from "react-icons/fa6";
+  HiOutlineSquares2X2,
+  HiOutlineUserGroup,
+  HiOutlineCog6Tooth,
+  HiOutlineQuestionMarkCircle,
+  HiOutlineArrowRightOnRectangle,
+  HiOutlineChevronDown,
+  HiOutlineChevronRight,
+} from "react-icons/hi2";
 import { TbTruckDelivery } from "react-icons/tb";
 import { PiHandCoinsFill } from "react-icons/pi";
-import dashboardTheme from "../../theme/dashboardTheme";
+import { MdOutlineAccountBalanceWallet } from "react-icons/md";
+import { RiAccountPinCircleFill } from "react-icons/ri";
+import { FaMoneyBillWave } from "react-icons/fa6";
+import AdviserS1 from "../../assets/Images/logos/logo.png";
 import "./AdminSideBar.css";
 
-const { SubMenu } = Menu;
+const MENU_ITEMS = [
+  { key: "/", label: "Dashboard", icon: HiOutlineSquares2X2 },
+  {
+    key: "/Customers",
+    label: "Customers",
+    icon: HiOutlineUserGroup,
+    badge: null,
+  },
+  {
+    key: "sale",
+    label: "Sale",
+    icon: FaMoneyBillWave,
+    children: [
+      { key: "/Delivery", label: "Delivery", icon: TbTruckDelivery },
+      { key: "/Cash", label: "Cash", icon: PiHandCoinsFill },
+      {
+        key: "/Account",
+        label: "Account",
+        icon: MdOutlineAccountBalanceWallet,
+      },
+      { key: "/Ikram", label: "Ikram", icon: RiAccountPinCircleFill },
+      { key: "/islam", label: "islam", icon: RiAccountPinCircleFill },
+    ],
+  },
+];
+
+const BOTTOM_ITEMS = [
+  { key: "settings", label: "Settings", icon: HiOutlineCog6Tooth },
+  { key: "help", label: "Help", icon: HiOutlineQuestionMarkCircle },
+  { key: "logout", label: "Logout", icon: HiOutlineArrowRightOnRectangle },
+];
 
 const AdminSideBar = ({ collapsed, setCollapsed }) => {
-  const Nav = useNavigate();
+  const navigate = useNavigate();
+  const location = useLocation();
+  const pathname = location.pathname;
+  const [saleOpen, setSaleOpen] = useState(
+    pathname.startsWith("/Delivery") ||
+      pathname.startsWith("/Cash") ||
+      pathname.startsWith("/Account") ||
+      pathname === "/Ikram" ||
+      pathname === "/islam",
+  );
+
+  const isActive = (key) => {
+    if (key === "/") return pathname === "/" || pathname === "";
+    return pathname === key || pathname.startsWith(key + "/");
+  };
+
+  const isSaleChildActive = () =>
+    MENU_ITEMS.find((m) => m.children)?.children?.some((c) => isActive(c.key));
 
   return (
     <div
-      className="admin-sidebar-root"
-      style={{ background: dashboardTheme.sidebarBg }}
+      className={`admin-sidebar ${collapsed ? "admin-sidebar--collapsed" : ""}`}
     >
-      <div className="admin-sidebar-header">
-        <div className="admin-sidebar-logo">
-          <div className="admin-sidebar-logo-icon">T</div>
-          {!collapsed && (
-            <div className="admin-sidebar-logo-text">
-              <span className="admin-sidebar-logo-title">Tailor</span>
-              <span className="admin-sidebar-logo-subtitle">Dashboard</span>
+      <div className="admin-sidebar-spacer">
+        {/* Logo / Brand */}
+        <div className="admin-sidebar-brand">
+          <div
+            className="admin-sidebar-brand-inner"
+            role="button"
+            tabIndex={0}
+            onClick={() => setCollapsed((prev) => !prev)}
+            onKeyDown={(e) => e.key === "Enter" && setCollapsed((prev) => !prev)
+            }
+          >
+            <div className="admin-sidebar-logo">
+              <img src={AdviserS1} alt="Logo" className={collapsed ? "ps-2" : ""} />
             </div>
+            {!collapsed && (
+              <div className="d-flex flex-column justify-content-center align-itmes-center">
+                <span className="admin-sidebar-brand-name">Stitch & Stone</span>
+                <sub className="text-muted text-center">Digital Atelier</sub>
+              </div>
+            )}
+          </div>
+          {!collapsed && (
+            <button
+              type="button"
+              className="admin-sidebar-toggle"
+              onClick={() => setCollapsed((prev) => !prev)}
+              aria-label="Collapse"
+            >
+              <HiOutlineChevronRight size={16} />
+            </button>
           )}
         </div>
-        <button
-          className="admin-sidebar-toggle"
-          type="button"
-          onClick={() => setCollapsed(!collapsed)}
-        >
-          <RiMenuFill size={18} />
-        </button>
-      </div>
 
-      <Menu
-        mode="inline"
-        inlineCollapsed={collapsed}
-        selectable={false}
-        className="admin-sidebar-menu"
-      >
-        <Menu.Item
-          onClick={() => {
-            Nav("/");
-          }}
-          key="2"
-          icon={<MdOutlineDesktopWindows />}
-        >
-          Dashboard
-        </Menu.Item>
+        {/* MENU section */}
+        <nav className="admin-sidebar-nav">
+          <div className="admin-sidebar-menu-label">MENU</div>
 
-        <Menu.Item
-          key="3"
-          onClick={() => {
-            Nav("/Customers");
-          }}
-          icon={<FaUsers />}
-        >
-          Customers
-        </Menu.Item>
+          {MENU_ITEMS.map((item) => {
+            if (item.children) {
+              const open = saleOpen;
+              const childActive = isSaleChildActive();
+              const showPopover = open;
 
-        <SubMenu key="sub1" icon={<FaMoneyBillTransfer />} title="Sale">
-          <Menu.Item
-            key="5"
-            icon={<TbTruckDelivery />}
-            onClick={() => {
-              Nav("/Delivery");
-            }}
-          >
-            Delivery
-          </Menu.Item>
-          <Menu.Item
-            key="6"
-            icon={<PiHandCoinsFill />}
-            onClick={() => {
-              Nav("/Cash");
-            }}
-          >
-            Cash
-          </Menu.Item>
-          <Menu.Item
-            key="8"
-            icon={<MdOutlineAccountBalanceWallet />}
-            onClick={() => {
-              Nav("/Account");
-            }}
-          >
-            Account
-          </Menu.Item>
-          <Menu.Item
-            key="9"
-            icon={<RiAccountPinCircleFill />}
-            onClick={() => {
-              Nav("/Ikram");
-            }}
-          >
-            Ikram
-          </Menu.Item>
-          <Menu.Item
-            key="10"
-            icon={<RiAccountPinCircleFill />}
-            onClick={() => {
-              Nav("/islam");
-            }}
-          >
-            islam
-          </Menu.Item>
-        </SubMenu>
+              return (
+                <div
+                  key={item.key}
+                  className="admin-sidebar-submenu"
+                  onMouseEnter={() => collapsed && setSaleOpen(true)}
+                  onMouseLeave={() => collapsed && setSaleOpen(false)}
+                >
+                  <button
+                    type="button"
+                    className={`admin-sidebar-item admin-sidebar-item--parent ${
+                      childActive ? "admin-sidebar-item--active" : ""
+                    }`}
+                    onClick={() => setSaleOpen((prev) => !prev)}
+                  >
+                    <span className="admin-sidebar-item-pill" />
+                    <item.icon className="admin-sidebar-item-icon" size={20} />
+                    {!collapsed && (
+                      <>
+                        <span className="admin-sidebar-item-label">
+                          {item.label}
+                        </span>
+                        <HiOutlineChevronDown
+                          className={`admin-sidebar-item-chevron ${open ? "admin-sidebar-item-chevron--open" : ""}`}
+                          size={14}
+                        />
+                      </>
+                    )}
+                  </button>
 
-        <SubMenu key="sub2" icon={<RiAppsLine />} title="More">
-          <Menu.Item key="11">Analytics</Menu.Item>
-          <Menu.Item key="12">Team</Menu.Item>
-        </SubMenu>
-      </Menu>
+                  {/* Pop-out inner menu (both collapsed and expanded) */}
+                  {showPopover && (
+                    <div className="admin-sidebar-popover">
+                      {item.children.map((child) => (
+                        <button
+                          key={child.key}
+                          type="button"
+                          className={`admin-sidebar-item admin-sidebar-item--child ${
+                            isActive(child.key)
+                              ? "admin-sidebar-item--active"
+                              : ""
+                          }`}
+                          onClick={() => {
+                            navigate(child.key);
+                            setSaleOpen(false);
+                          }}
+                        >
+                          <child.icon
+                            className="admin-sidebar-item-icon"
+                            size={18}
+                          />
+                          <span className="admin-sidebar-item-label">
+                            {child.label}
+                          </span>
+                        </button>
+                      ))}
+                    </div>
+                  )}
+                </div>
+              );
+            }
 
-      <div className="admin-sidebar-footer-card">
-        <div className="admin-sidebar-footer-badge">New</div>
-        <h4 className="admin-sidebar-footer-title">Download our mobile app</h4>
-        <p className="admin-sidebar-footer-text">
-          Track orders, manage customers and stay in sync on the go.
-        </p>
-        <button className="admin-sidebar-footer-button" type="button">
-          Download
-        </button>
+            const active = isActive(item.key);
+            return (
+              <button
+                key={item.key}
+                type="button"
+                className={`admin-sidebar-item ${active ? "admin-sidebar-item--active" : ""}`}
+                onClick={() => navigate(item.key)}
+              >
+                <span className="admin-sidebar-item-pill" />
+                <item.icon className="admin-sidebar-item-icon" size={20} />
+                {!collapsed && (
+                  <>
+                    <span className="admin-sidebar-item-label">
+                      {item.label}
+                    </span>
+                    {item.badge != null && (
+                      <span className="admin-sidebar-item-badge">
+                        {item.badge}
+                      </span>
+                    )}
+                  </>
+                )}
+              </button>
+            );
+          })}
+        </nav>
+
+        {/* Bottom: Settings, Help, Logout */}
+        <div className="admin-sidebar-bottom">
+          {BOTTOM_ITEMS.map((item) => (
+            <button
+              key={item.key}
+              type="button"
+              className="admin-sidebar-item"
+              onClick={() => {
+                if (item.key === "logout") {
+                  // Add logout logic
+                }
+              }}
+            >
+              <item.icon className="admin-sidebar-item-icon" size={20} />
+              {!collapsed && (
+                <span className="admin-sidebar-item-label">{item.label}</span>
+              )}
+            </button>
+          ))}
+        </div>
+
+        {/* Download card */}
+        {!collapsed && (
+          <div className="admin-sidebar-download">
+            <h4 className="admin-sidebar-download-title">
+              Pro Plan Available
+            </h4>
+            <p className="admin-sidebar-download-text">
+              Upgrade to our Pro Plan for advanced features and priority support.
+            </p>
+            <button type="button" className="admin-sidebar-download-btn">
+              Buy Pro Plan
+            </button>
+          </div>
+        )}
       </div>
     </div>
   );

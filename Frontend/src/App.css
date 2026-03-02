@@ -34,7 +34,6 @@
 .TopBarStyle .mainContainer {
   background: #e8e8e84e;
   color: var(--ColorPrimeHover);
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
   border-radius: 12px;
   padding: 10px 1rem;
   width: 100%;

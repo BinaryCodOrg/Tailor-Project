@@ -13,7 +13,12 @@ createRoot(document.getElementById("root")).render(
     <ConfigProvider
       notify={notification}
       theme={{
-        token: {},
+        token: {
+          /* here is your global tokens */
+          colorPrimary: "#0d4e4e",
+          // trigger deploy
+
+        },
       }}
     >
       <RecoilRoot>
