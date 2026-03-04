@@ -15,7 +15,7 @@ createRoot(document.getElementById("root")).render(
       theme={{
         token: {
           /* here is your global tokens */
-          colorPrimary: "#0d4e4e",
+          colorPrimary: "#2563eb",
           // trigger deploy
 
         },

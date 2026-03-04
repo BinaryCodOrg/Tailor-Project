@@ -5,6 +5,18 @@
   min-height: 100%;
 }
 
+.bg-gray{
+  background: #f5f6f6;
+}
+
+.stateButton{
+  color: #2563eb !important;
+  &&:is(:hover,:focus,:active){
+    color: white !important;
+    background-color: #2563eb !important;
+  }
+}
+
 .db-header {
   display: flex;
   align-items: center;

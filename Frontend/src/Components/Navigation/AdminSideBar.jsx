@@ -16,13 +16,14 @@ import { RiAccountPinCircleFill } from "react-icons/ri";
 import { FaMoneyBillWave } from "react-icons/fa6";
 import AdviserS1 from "../../assets/Images/logos/logo.png";
 import "./AdminSideBar.css";
+import { BsScissors } from "react-icons/bs";
 
 const MENU_ITEMS = [
   { key: "/", label: "Dashboard", icon: HiOutlineSquares2X2 },
   {
-    key: "/Customers",
-    label: "Customers",
-    icon: HiOutlineUserGroup,
+    key: "/NewOrder",
+    label: "New Order",
+    icon: BsScissors,
     badge: null,
   },
   {

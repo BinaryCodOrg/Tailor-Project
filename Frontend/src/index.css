@@ -1,7 +1,7 @@
 :root {
-  --ColorPrime: #0d4e4e;
+  --ColorPrime: #2563eb;
   --ColorLightGreen: #f5fff7;
-  --ColorPrimeHover: #324444;
+  --ColorPrimeHover: #183b88;
 }
 
 /* Hide up/down buttons in number input */

@@ -1,24 +1,12 @@
-import React from "react";
-import { HiOutlineArrowUpRight } from "react-icons/hi2";
-import ChartJSComponent from "../../assets/Custom/ChartJSComponent/ChartJSComponent";
 import "./DashBoard.css";
+import { Typography } from "antd";
+import { IoFilter } from "react-icons/io5";
+import StateCards from "../../assets/Custom/StateCards/StateCards";
+import SemiCircleChart from "../../assets/Custom/ChartJSComponent/SemiCircleChart";
+import SalesReportChart from "../../assets/Custom/ChartJSComponent/SalesReportChart";
+import { PiExportLight } from "react-icons/pi";
 
 const DashBoard = () => {
-  const lineData = {
-    labels: ["S", "M", "T", "W", "T", "F", "S"],
-    datasets: [
-      {
-        data: [20, 40, 32, 45, 38, 52, 48],
-        fill: true,
-        backgroundColor: "rgba(59,130,246,0.18)",
-        borderColor: "#2563eb",
-        tension: 0.45,
-      },
-    ],
-  };
-
-  const lineOptions = {};
-
   return (
     <div className="db-root">
       {/* Header */}
@@ -32,9 +20,10 @@ const DashBoard = () => {
 
         <div className="db-header-actions">
           <button type="button" className="db-btn db-btn-ghost">
-            Export
+            Export <PiExportLight className="ms-2" />
           </button>
           <button type="button" className="db-btn db-btn-primary">
+            <IoFilter className="me-2" />
             Filter
           </button>
         </div>
@@ -42,36 +31,32 @@ const DashBoard = () => {
 
       {/* Top stats */}
       <div className="db-stats-row">
-        <StatCard
+        <StateCards
           title="Total Profit"
           value="4,439.10"
           note="ve leat momth 89223.458"
         />
-        <StatCard
+        <StateCards
           title="Ended Projects"
           value="3,179.04"
           note="Incfromnt 28.54"
         />
-        <StatCard
+        <StateCards
           title="Running Sales"
           value="12"
           note="Increased from last month"
         />
-        <StatCard
-          title="Pending Project"
-          value="2"
-          note="Discus morin"
-        />
+        <StateCards title="Pending Project" value="2" note="Discus morin" />
       </div>
 
       {/* Middle charts */}
       <div className="db-main-grid">
         {/* Sales report area */}
-        <div className="db-card db-card-large">
+        <div className="db-card db-card-large d-flex flex-column">
           <div className="db-card-header">
             <div>
               <h2 className="db-card-title">Sales Report Area</h2>
-              <p className="db-card-subtitle">+4.3% vs last years</p>
+              <p className="db-card-subtitle">+4.3% vs last Month</p>
             </div>
             <div className="db-card-header-right">
               <button type="button" className="db-chip">
@@ -82,8 +67,8 @@ const DashBoard = () => {
               </button>
             </div>
           </div>
-          <div className="db-chart-wrapper">
-            <ChartJSComponent data={lineData} options={lineOptions} />
+          <div className="db-chart-wrapper mt-auto">
+            <SalesReportChart />
           </div>
         </div>
 
@@ -97,22 +82,12 @@ const DashBoard = () => {
           </div>
 
           <div className="db-activity">
-            <div className="db-activity-ring">
-              <div className="db-activity-inner">
-                <span className="db-activity-value">289K</span>
-                <span className="db-activity-label">Total sell count</span>
-              </div>
-            </div>
-            <div className="db-activity-legend">
-              <div className="db-legend-item">
-                <span className="db-legend-dot db-legend-dot-blue" />
-                <span className="db-legend-text">Completed</span>
-              </div>
-              <div className="db-legend-item">
-                <span className="db-legend-dot db-legend-dot-light" />
-                <span className="db-legend-text">Pending</span>
-              </div>
-            </div>
+            <SemiCircleChart
+              totalCount="289K"
+              label="Total sell count"
+              data={[60, 40, 30, 20, 10]}
+              Colors={["#3b82f6", "#93c5fd", "#1e40af", "#3b82f6", "#93c5fd"]}
+            />
           </div>
         </div>
       </div>
@@ -163,23 +138,6 @@ const DashBoard = () => {
   );
 };
 
-const StatCard = ({ title, value, note }) => {
-  return (
-    <div className="db-stat-card">
-      <div className="db-stat-header">
-        <span className="db-stat-title">{title}</span>
-        <button type="button" className="db-stat-icon-btn">
-          <HiOutlineArrowUpRight size={16} />
-        </button>
-      </div>
-      <div className="db-stat-value-row">
-        <span className="db-stat-value">{value}</span>
-      </div>
-      <p className="db-stat-note">{note}</p>
-    </div>
-  );
-};
-
 const TEAM_MEMBERS = [
   {
     name: "Alskandra Deff",
@@ -208,4 +166,3 @@ const TEAM_MEMBERS = [
 ];
 
 export default DashBoard;
-
