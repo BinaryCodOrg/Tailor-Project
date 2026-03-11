@@ -239,11 +239,11 @@
   border-radius: 4px;
 }
 
-.admin-sidebar--collapsed .admin-sidebar-item-label,
+/* .admin-sidebar--collapsed .admin-sidebar-item-label,
 .admin-sidebar--collapsed .admin-sidebar-item-badge,
 .admin-sidebar--collapsed .admin-sidebar-item-chevron {
   display: none;
-}
+} */
 
 .admin-sidebar--collapsed .admin-sidebar-children {
   margin-left: 0;

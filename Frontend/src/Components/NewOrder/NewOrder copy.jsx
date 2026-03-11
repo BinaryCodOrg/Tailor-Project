@@ -79,7 +79,7 @@ const NewOrder = () => {
         setOrders((prev) =>
           values?._id
             ? prev.map((o) => (o._id === values._id ? res : o))
-            : [...prev, res]
+            : [...prev, res],
         );
 
         openNotification("success", "topRight", "Success", "Saved");
@@ -94,20 +94,20 @@ const NewOrder = () => {
     switch (step) {
       case 1:
         return <PersonalDetails />;
-      // case 2:
-      //   return <KameezBlock />;
-      // case 3:
-      //   return <ShalwarBlock />;
-      // case 4:
-      // case 6:
-      //   return <ShirtBlock />;
-      // case 5:
-      // case 7:
-      //   return <PentBlock />;
-      // case 8:
-      //   return <WaistCortBlock />;
-      // case "final":
-      //   return <NotesBlock />;
+      case 2:
+        return <KameezBlock />;
+      case 3:
+        return <ShalwarBlock />;
+      case 4:
+      case 6:
+        return <ShirtBlock />;
+      case 5:
+      case 7:
+        return <PentBlock />;
+      case 8:
+        return <WaistCortBlock />;
+      case "final":
+        return <NotesBlock />;
       default:
         return null;
     }

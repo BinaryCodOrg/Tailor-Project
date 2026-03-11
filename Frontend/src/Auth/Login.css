@@ -1,0 +1,71 @@
+.LogoText {
+  font-family: var(--LogoFont) !important;
+  color: var(--ColorPrimeHover);
+  font-size: 35px;
+  font-weight: 500;
+}
+.LogoText span {
+  color: gold;
+  font-family: var(--LogoFont) !important;
+}
+
+.login-wrapper {
+  min-height: 100vh;
+  background: #dce1eb;
+}
+
+.login-card {
+  background: white;
+  max-width: 1000px;
+  margin: auto;
+}
+
+.image-section {
+  background: white;
+  padding: 25px;
+}
+
+.image-box {
+  border-radius: 20px;
+  overflow: hidden;
+}
+
+.video-box {
+  width: 100%;
+  height: 500px;
+  border-radius: 20px;
+  overflow: hidden;
+}
+
+.video-fluid {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* makes it behave like background image */
+}
+
+.form-section {
+  background: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.login-btn {
+  background-color: #2563eb !important;
+  border-color: #2563eb !important;
+  border-radius: 8px;
+  height: 45px;
+}
+
+.login-btn:hover {
+  background-color: #333 !important;
+  border-color: #333 !important;
+}
+
+.register-link {
+  color: #1890ff;
+  font-weight: 500;
+}
+
+

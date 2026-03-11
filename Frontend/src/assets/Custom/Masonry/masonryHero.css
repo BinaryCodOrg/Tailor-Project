@@ -1,0 +1,61 @@
+.hero {
+  height: 100vh;
+  overflow: hidden;
+  position: relative;
+  background: #dce1eb;
+}
+
+.tilt-wrapper {
+  position: absolute;
+  inset: -200px;
+
+  display: grid;
+  grid-template-columns: repeat(10, 1fr);
+  gap: 20px;
+
+  transform: rotate(-20deg) scale(1.3);
+}
+
+.column {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+
+  animation: scrollUp 30s linear infinite;
+}
+
+.column.reverse {
+  animation: scrollDown 30s linear infinite;
+}
+
+.column img {
+  width: 100%;
+  border-radius: 12px;
+  display: block;
+
+  filter: grayscale(100%);
+  &&:is(:hover) {
+    filter: grayscale(0%);
+    transition: 1s filter ease-in;
+  }
+}
+
+/* animations */
+
+@keyframes scrollUp {
+  from {
+    transform: translateY(0);
+  }
+  to {
+    transform: translateY(-50%);
+  }
+}
+
+@keyframes scrollDown {
+  from {
+    transform: translateY(-50%);
+  }
+  to {
+    transform: translateY(0);
+  }
+}

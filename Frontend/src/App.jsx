@@ -1,20 +1,21 @@
-
-
-import React, { useEffect } from 'react'
-import './App.css'
-import ResourceBlock from './assets/ResourceBlock/ResourceBlock'
-import { Route, Routes, useLocation } from 'react-router-dom'
+import React, { useEffect } from "react";
+import "./App.css";
+import ResourceBlock from "./assets/ResourceBlock/ResourceBlock";
+import { Route, Routes, useLocation } from "react-router-dom";
 
 import Aos from "aos";
 import "aos/dist/aos.css";
-import { Element, scroller } from 'react-scroll'
-import LandingPage from './Components/Landing/LandingPage';
-import { useRecoilState, useRecoilValue } from 'recoil';
-import { SelectedLang, WebContent } from './Store/Atom';
-import Language from './assets/Language/Language';
+import { Element, scroller } from "react-scroll";
+import LandingPage from "./Components/Landing/LandingPage";
+import { useRecoilState, useRecoilValue } from "recoil";
+import { SelectedLang, WebContent } from "./Store/Atom";
+import Language from "./assets/Language/Language";
+import Login from "./Auth/Login";
+import MasonryHero from "./assets/Custom/Masonry/MasonryHero";
+import Register from "./Auth/Register";
+import AuthPage from "./Auth/AuthPage";
 
 function App() {
-
   let location = useLocation();
 
   let selectedLang = useRecoilValue(SelectedLang);
@@ -22,7 +23,6 @@ function App() {
   let Lang = Language;
 
   useEffect(() => {
-
     // let cLocation = location.pathname;
 
     // console.log(cLocation)
@@ -34,8 +34,7 @@ function App() {
       smooth: "easeInOutQuart", // Smooth scroll effect
       offset: -70, // Adjust for fixed headers (if any)
     });
-
-  }, [location])
+  }, [location]);
 
   useEffect(() => {
     Aos.init({
@@ -45,22 +44,21 @@ function App() {
     });
   }, []);
 
-
   useEffect(() => {
     setWebContent(Lang[selectedLang]);
-  }, [selectedLang])
-
-
+  }, [selectedLang]);
 
   return (
     <div>
       <Element name="test1" className="element"></Element>
       <Routes>
         <Route path="/ResourceBlock/*" element={<ResourceBlock />} />
+        <Route path="/auth/*" element={<AuthPage />} />
+        <Route path="/Masonry" element={<MasonryHero />} />
         <Route path="/*" element={<LandingPage />} />
       </Routes>
     </div>
-  )
+  );
 }
 
-export default App
+export default App;

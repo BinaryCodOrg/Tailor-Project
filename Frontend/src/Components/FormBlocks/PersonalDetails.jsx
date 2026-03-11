@@ -1,98 +1,142 @@
 import React from "react";
-import { Image, Row } from "react-bootstrap";
-import CInput from "../../assets/Custom/CInput";
-import CButton from "../../assets/Custom/CButton";
+import { Form, Input, DatePicker, InputNumber, Row, Col, Card } from "antd";
+import { motion } from "framer-motion";
+import { Image } from "react-bootstrap";
+import Shalwar_kameez from "../../assets/Images/product_images/shalwar kameez.png";
+import Pent_shirt from "../../assets/Images/product_images/Pent shirt.png";
+import Dress_shirt from "../../assets/Images/product_images/Shirt.png";
+import Dress_pent from "../../assets/Images/product_images/pent.png";
+import waist_Cort from "../../assets/Images/product_images/Waist cort.png";
 
-const PersonalDetails = ({
-  values,
-  webContent,
-  setFieldValue,
-  prevStep,
-  nextStep,
-  sideImage,
-}) => {
+const clothOptions = [
+  { title: "shalwar kameez", image: Shalwar_kameez },
+  { title: "Pant Shirt", image: Pent_shirt },
+  { title: "Waist Cort", image: waist_Cort },
+  { title: "Dress Shirt", image: Dress_shirt },
+  { title: "Dress Pent", image: Dress_pent },
+];
+
+const PersonalDetails = () => {
   return (
-    <>
-      <div className="col-md-6">
-        <Row className="justify-content-center">
-          <h4 className="text-center Head2">
-            {webContent?.InputForm?.FirstSet?.title || ""}
-          </h4>
-          <div className="col-md-6 mt-2">
-            <CInput
-              label={webContent?.InputForm?.FirstSet?.name || ""}
-              type="text"
-              name="name"
-            />
-          </div>
-          <div className="col-md-6 mt-2">
-            <CInput
-              label={webContent?.InputForm?.FirstSet?.phoneNumber || ""}
-              type="text"
-              name="phoneNumber"
-            />
-          </div>
-          <div className="col-md-6 mt-2">
-            <CInput
-              values={values}
-              setFieldValue={setFieldValue}
-              maxDate={new Date()}
-              label={webContent?.InputForm?.FirstSet?.receivedDate || ""}
-              type="date"
-              name="receivedDate"
-            />
-          </div>
-          <div className="col-md-6 mt-2">
-            <CInput
-              values={values}
-              setFieldValue={setFieldValue}
-              label={webContent?.InputForm?.FirstSet?.returnDate || ""}
-              type="date"
-              name="returnDate"
-            />
-          </div>
-          <div className="col-md-6 mt-2">
-            <CInput
-              label={webContent?.InputForm?.FirstSet?.numberOfSuits || ""}
-              type="number"
-              name="numberOfSuits"
-            />
-          </div>
-          <div className="col-md-6 mt-2">
-            <CInput
-              label={webContent?.InputForm?.FirstSet?.typeOfCloth || ""}
-              type="select"
-              name="typeOfCloth"
-              options={[
-                { value: "", label: "Select" },
-                { value: "shalwar kameez", label: "Shalwar Kameez" },
-                { value: "Pant Shirt", label: "Pant Shirt" },
-                { value: "Dress Shirt", label: "Dress Shirt" },
-                { value: "Dress Pent", label: "Dress Pent" },
-                { value: "Waist Cort", label: "Waist Cort" },
-              ]}
-            />
-          </div>
-          <div className="col-md-12 mt-4">
-            <Row className="justify-content-center">
-              <div className="col-md-4 mt-2">
-                <CButton
-                  styles={{ width: "100%" }}
-                  callBackFunction={() => nextStep(values)}
-                  text="Next"
-                  type="primary"
-                />
-              </div>
-            </Row>
-          </div>
+    <motion.div
+      initial="hidden"
+      animate="visible"
+      variants={{
+        hidden: {},
+        visible: {
+          transition: { staggerChildren: 0.08 },
+        },
+      }}
+    >
+      <motion.div
+        variants={{
+          hidden: { opacity: 0, y: 20 },
+          visible: { opacity: 1, y: 0 },
+        }}
+      >
+        <h2 className="bold-title">Create New Order</h2>
+        <p className="bold-subtitle">
+          Enter customer details and select cloth type
+        </p>
+      </motion.div>
+
+      <Row gutter={[24, 20]} className="mt-4">
+        <Col xs={24} md={12}>
+          <Form.Item
+            label="Customer Name"
+            name="name"
+            rules={[{ required: true, message: "Enter name" }]}
+          >
+            <Input size="large" placeholder="John Doe" />
+          </Form.Item>
+        </Col>
+
+        <Col xs={24} md={12}>
+          <Form.Item
+            label="Phone Number"
+            name="phoneNumber"
+            rules={[
+              { required: true },
+              { pattern: /^[0-9]+$/, message: "Numbers only" },
+            ]}
+          >
+            <Input size="large" placeholder="03XXXXXXXXX" />
+          </Form.Item>
+        </Col>
+
+        <Col xs={24} md={12}>
+          <Form.Item
+            label="Received Date"
+            name="receivedDate"
+            rules={[{ required: true }]}
+          >
+            <DatePicker size="large" style={{ width: "100%" }} />
+          </Form.Item>
+        </Col>
+
+        <Col xs={24} md={12}>
+          <Form.Item
+            label="Return Date"
+            name="returnDate"
+            rules={[{ required: true }]}
+          >
+            <DatePicker size="large" style={{ width: "100%" }} />
+          </Form.Item>
+        </Col>
+
+        <Col xs={24} md={12}>
+          <Form.Item
+            label="Number of Suits"
+            name="numberOfSuits"
+            rules={[{ required: true }]}
+          >
+            <InputNumber size="large" min={1} style={{ width: "100%" }} />
+          </Form.Item>
+        </Col>
+      </Row>
+
+      {/* Cloth Type Visual Selector */}
+      <Form.Item
+        label="Type of Cloth"
+        name="typeOfCloth"
+        rules={[{ required: true, message: "Select cloth type" }]}
+        className="mt-4"
+      >
+        <Row gutter={[16, 16]}>
+          {clothOptions.map((type) => (
+            <Col xs={12} md={8} key={type.title}>
+              <Form.Item
+                noStyle
+                shouldUpdate={(prev, curr) =>
+                  prev.typeOfCloth !== curr.typeOfCloth
+                }
+              >
+                {({ getFieldValue, setFieldsValue }) => {
+                  const selected = getFieldValue("typeOfCloth") === type.title;
+
+                  return (
+                    <Card
+                      hoverable
+                      onClick={() => setFieldsValue({ typeOfCloth: type })}
+                      className={`cloth-card ${selected ? "selected" : ""}`}
+                    >
+                      <div className="cloth-card-inner">
+                        <img
+                          src={type.image}
+                          alt={type.title}
+                          className="cloth-card-img"
+                        />
+                        <span className="cloth-card-title">{type.title}</span>
+                      </div>
+                    </Card>
+                  );
+                }}
+              </Form.Item>
+            </Col>
+          ))}
         </Row>
-      </div>
-      <div className="col-md-6">
-        <div className="d-none d-md-flex justify-content-center align-items-center h-100">
-          <Image src={sideImage} fluid style={{ width: "65%" }} />
-        </div>
-      </div>
-    </>
+      </Form.Item>
+    </motion.div>
   );
 };
 

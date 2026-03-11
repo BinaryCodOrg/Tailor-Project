@@ -215,6 +215,7 @@ const AdminSideBar = ({ collapsed, setCollapsed }) => {
               onClick={() => {
                 if (item.key === "logout") {
                   // Add logout logic
+                  navigate("/Login221")
                 }
               }}
             >
