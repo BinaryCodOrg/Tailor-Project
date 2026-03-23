@@ -1,72 +1,47 @@
 import React from "react";
-import { Image, Row } from "react-bootstrap";
-import CInput from "../../assets/Custom/CInput";
-import CButton from "../../assets/Custom/CButton";
+import { Row, Col, Form, Input, Button, Image } from "antd";
+import { motion } from "framer-motion";
 
-const NotesBlock = ({
-  values,
-  webContent,
-  setFieldValue,
-  prevStep,
-  nextStep,
-  generateOptions,
-  sideImage,
-  onSubmit
-}) => {
+const { TextArea } = Input;
+
+const NotesBlock = ({ values, prevStep, onSubmit, sideImage }) => {
   return (
-    <>
-      <div className="col-md-6">
-        <Row className="justify-content-center">
-          <h4 className="text-center Head2">
-            {webContent?.InputForm?.FirstSet?.title || ""}
-          </h4>
-          
-          <div className="col-md-12 mt-2">
-            <CInput
-              label={webContent?.InputForm?.thirdSet?.note || ""}
-              type="textarea"
-              name="note"
-            />
-          </div>
-          <div className="col-md-12 mt-2">
-            <CInput
-              label={webContent?.InputForm?.thirdSet?.design || ""}
-              type="textarea"
-              name="design"
-            />
-          </div>
+    <Row gutter={[40, 20]}>
+      {/* LEFT SIDE */}
+      <Col xs={24} md={24}>
+        <motion.div
+          initial={{ opacity: 0, y: 15 }}
+          animate={{ opacity: 1, y: 0 }}
+        >
+          <h2 className="bold-title">Additional Instructions</h2>
+          <p className="bold-subtitle">
+            Add any special tailoring notes or design details
+          </p>
 
-          <div className="col-md-12 mt-4">
-            <Row className="justify-content-between">
-              <div className="col-md-4 mt-2">
-                <CButton
-                  styles={{ width: "100%" }}
-                  callBackFunction={() => prevStep(values)}
-                  text="Back"
-                  type="primary"
+          <Row gutter={[20, 18]} className="mt-3">
+            {/* General Notes */}
+            <Col xs={24}>
+              <Form.Item label="Tailoring Notes" name="note">
+                <TextArea
+                  rows={4}
+                  placeholder="Enter stitching instructions, fitting preferences, or any special notes"
                 />
-              </div>
+              </Form.Item>
+            </Col>
 
-              <div className="col-md-4 mt-2">
-                <CButton
-                  styles={{ width: "100%" }}
-                  callBackFunction={() => {
-                    onSubmit(values);
-                  }}
-                  text="Submit"
-                  type="primary"
+            {/* Design Instructions */}
+            <Col xs={24}>
+              <Form.Item label="Design Instructions" name="design">
+                <TextArea
+                  rows={4}
+                  placeholder="Mention embroidery, piping, contrast fabric, or other design details"
                 />
-              </div>
-            </Row>
-          </div>
-        </Row>
-      </div>
-      <div className="col-md-6">
-        <div className="d-none d-md-flex justify-content-center align-items-center h-100">
-          <Image src={sideImage} fluid style={{ width: "65%" }} />
-        </div>
-      </div>
-    </>
+              </Form.Item>
+            </Col>
+          </Row>
+        </motion.div>
+      </Col>
+    </Row>
   );
 };
 

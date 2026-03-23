@@ -1,0 +1,17 @@
+.shalwar-svg {
+  width: 100%;
+  max-width: 340px;
+  fill: none;
+  stroke-width: 2;
+  transition: all 0.3s ease;
+}
+
+.shalwar-svg .outline {
+  stroke: #bbb;
+}
+
+.shalwar-svg .highlight {
+  stroke: #111;
+  stroke-width: 4;
+  filter: drop-shadow(0 0 6px rgba(0, 0, 0, 0.25));
+}

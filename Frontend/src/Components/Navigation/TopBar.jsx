@@ -47,7 +47,7 @@ const TopBar = ({ collapsed, setCollapsed }) => {
               </div>
               <div className="topbar-user-info">
                 <span className="topbar-user-name">Totok Michael</span>
-                <span className="topbar-user-email">tmichaelIC@meil.com</span>
+                <span className="topbar-user-email">tmichaelIC@gmeil.com</span>
               </div>
             </div>
           </div>

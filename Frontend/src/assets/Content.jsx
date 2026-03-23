@@ -4,7 +4,7 @@ import NewOrder from "../Components/NewOrder/NewOrder";
 const Language = {
     Pages: [
         {
-            route: "/NewOrder",
+            route: "/orders/new/*",
             component: <NewOrder />,
             condition: (CRObject) => false
         }

@@ -1,0 +1,8 @@
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+
+<svg width="200" height="300" viewBox="0 0 200 300" xmlns="http://www.w3.org/2000/svg">
+    <path d="M50,30 L150,30 L180,80 Q150,110 120,80 L120,270 L80,270 L80,80 Q50,110 20,80 Z" fill="blue" stroke="black"
+        stroke-width="2" />
+
+    <circle cx="100" cy="30" r="15" fill="none" stroke="black" stroke-width="2" />
+</svg>

@@ -1,13 +1,11 @@
 import React, { useState } from "react";
-import { Form, InputNumber, Select, Row, Col } from "antd";
+import { Form, InputNumber, Row, Col, Button } from "antd";
 import { motion } from "framer-motion";
-import WaistCoatPreview from "./WaistCoatPreview"; // swap with your actual preview component or <Image>
-import "./Shirt.css"; // reuse same stylesheet
+import { Image } from "antd";
+import "./Trouser.css"; // reuse same styling vibe
+import TrouserPreview from "./TrouserPreview";
 
-const { Option } = Select;
-
-const WaistCoatBlock = () => {
-  const form = Form.useFormInstance();
+const TrouserBlock = ({ prevStep, nextStep, sideImage }) => {
   const [activeField, setActiveField] = useState(null);
 
   return (
@@ -20,16 +18,16 @@ const WaistCoatBlock = () => {
             visible: { opacity: 1, y: 0 },
           }}
         >
-          <h2 className="bold-title">Waist Coat Measurements</h2>
+          <h2 className="bold-title">Trouser Measurements</h2>
           <p className="bold-subtitle">Enter all measurements in inches</p>
         </motion.div>
 
         <Row gutter={[24, 16]}>
-          {/* Coat Length */}
+          {/* Trouser Length */}
           <Col xs={24} md={12}>
             <Form.Item
-              label="Coat Length"
-              name="coatLength"
+              label="Trouser Length"
+              name="trouserLength"
               rules={[{ required: true }]}
             >
               <InputNumber
@@ -42,70 +40,70 @@ const WaistCoatBlock = () => {
             </Form.Item>
           </Col>
 
-          {/* Shoulder Width */}
+          {/* Hip Circumference */}
           <Col xs={24} md={12}>
             <Form.Item
-              label="Shoulder Width"
-              name="shoulderWidth"
+              label="Hip Circumference"
+              name="hipCircumference"
               rules={[{ required: true }]}
             >
               <InputNumber
                 size="large"
                 style={{ width: "100%" }}
                 min={0}
-                onFocus={() => setActiveField("shoulder")}
+                onFocus={() => setActiveField("hip")}
                 onBlur={() => setActiveField(null)}
               />
             </Form.Item>
           </Col>
 
-          {/* Chest Circumference */}
+          {/* Thigh Circumference */}
           <Col xs={24} md={12}>
-            <Form.Item label="Chest Circumference" name="chest">
+            <Form.Item label="Thigh Circumference" name="thighCircumference">
               <InputNumber
                 size="large"
                 style={{ width: "100%" }}
                 min={0}
-                onFocus={() => setActiveField("chest")}
+                onFocus={() => setActiveField("thigh")}
                 onBlur={() => setActiveField(null)}
               />
             </Form.Item>
           </Col>
 
-          {/* Waist Circumference */}
+          {/* Leg Opening Width */}
           <Col xs={24} md={12}>
-            <Form.Item label="Waist Circumference" name="waist">
+            <Form.Item label="Leg Opening Width" name="legOpeningWidth">
               <InputNumber
                 size="large"
                 style={{ width: "100%" }}
                 min={0}
-                onFocus={() => setActiveField("waist")}
+                onFocus={() => setActiveField("bottom")}
                 onBlur={() => setActiveField(null)}
               />
             </Form.Item>
           </Col>
 
-          {/* Hem Width (Ghara) */}
+          {/* Front Rise */}
           <Col xs={24} md={12}>
-            <Form.Item label="Hem Width" name="hemWidth">
+            <Form.Item label="Front Rise" name="frontRise">
               <InputNumber
                 size="large"
                 style={{ width: "100%" }}
                 min={0}
-                onFocus={() => setActiveField("hem")}
+                onFocus={() => setActiveField("frontRise")}
                 onBlur={() => setActiveField(null)}
               />
             </Form.Item>
           </Col>
 
-          {/* Neck Size */}
+          {/* Back Rise */}
           <Col xs={24} md={12}>
-            <Form.Item label="Neck Size" name="neckSize">
+            <Form.Item label="Back Rise" name="backRise">
               <InputNumber
                 size="large"
                 style={{ width: "100%" }}
                 min={0}
-                onFocus={() => setActiveField("neck")}
+                onFocus={() => setActiveField("backRise")}
                 onBlur={() => setActiveField(null)}
               />
             </Form.Item>
@@ -113,14 +111,14 @@ const WaistCoatBlock = () => {
         </Row>
       </Col>
 
-      {/* RIGHT SIDE PREVIEW */}
+      {/* RIGHT SIDE IMAGE */}
       <Col xs={24} md={10}>
         <div className="shalwar-preview-wrapper">
-          <WaistCoatPreview activeField={activeField} />
+          <TrouserPreview activeField={activeField} />
         </div>
       </Col>
     </Row>
   );
 };
 
-export default WaistCoatBlock;
+export default TrouserBlock;

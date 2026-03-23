@@ -1,67 +1,80 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { Form, Card, Button } from "antd";
 import { motion, AnimatePresence } from "framer-motion";
 import { useRecoilState, useRecoilValue } from "recoil";
-import { Orders, WebContent } from "../../Store/Atom";
-import { useLocation, useNavigate, useSearchParams } from "react-router-dom";
+import { Order, WebContent } from "../../Store/Atom";
+import {
+  useNavigate,
+  useLocation,
+  Routes,
+  Route,
+  Navigate,
+} from "react-router-dom";
 import { openNotification, PatchAxios, PostAxios } from "../../assets/Api/Api";
-
 import PersonalDetails from "../FormBlocks/PersonalDetails";
-import KameezBlock from "../FormBlocks/KameezBlock";
-import ShalwarBlock from "../FormBlocks/ShalwarBlock";
+import KameezMeasurements from "../FormBlocks/KameezMeasurements";
+import ShalwarMeasurements from "../FormBlocks/ShalwarMeasurements";
 import ShirtBlock from "../FormBlocks/ShirtBlock";
-import PentBlock from "../FormBlocks/PentBlock";
-import WaistCortBlock from "../FormBlocks/WaistCortBlock";
+import TrouserBlock from "../FormBlocks/TrouserBlock";
+import WaistCoatBlock from "../FormBlocks/WaistCortBlock";
 import NotesBlock from "../FormBlocks/NotesBlock";
+
+const BASE = "/orders/new";
+
+// Maps cloth type to an ordered list of route segments
+const stepFlow = {
+  "shalwar kameez": ["details", "kameez", "shalwar", "notes"],
+  "Pant Shirt": ["details", "shirt", "trouser", "notes"],
+  "Dress Shirt": ["details", "shirt", "notes"],
+  "Dress Pent": ["details", "trouser", "notes"],
+  "Waist Cort": ["details", "waistcoat", "notes"],
+};
 
 const NewOrder = () => {
   const [form] = Form.useForm();
-  const [orders, setOrders] = useRecoilState(Orders);
+  const [order, setOrder] = useRecoilState(Order);
   const webContent = useRecoilValue(WebContent);
 
   const Nav = useNavigate();
   const location = useLocation();
-  const [searchParams] = useSearchParams();
 
-  const [step, setStep] = useState(1);
+  // Derive current segment from URL, e.g. "/orders/new/shirt" → "shirt"
+  const currentSegment = location.pathname.replace(`${BASE}/`, "") || "details";
 
-  const stepFlow = {
-    "shalwar kameez": [1, 2, 3, "final"],
-    "Pant Shirt": [1, 4, 5, "final"],
-    "Dress Shirt": [1, 6, "final"],
-    "Dress Pent": [1, 7, "final"],
-    "Waist Cort": [1, 8, "final"],
+  const getSteps = () => {
+    const { typeOfCloth } = form.getFieldsValue(true);
+    return stepFlow[typeOfCloth?.title] ?? ["details", "notes"];
   };
+
+  const navigateTo = (segment) => Nav(`${BASE}/${segment}`);
 
   const nextStep = async () => {
     try {
-      const values = await form.validateFields();
-      const { typeOfCloth } = values;
+      await form.validateFields();
+
+      const { typeOfCloth } = form.getFieldsValue(true);
 
       if (!typeOfCloth) {
         openNotification("error", "topRight", "Error", "Select cloth type");
         return;
       }
 
-      const steps = stepFlow[typeOfCloth];
-      const index = steps.indexOf(step);
+      const steps = getSteps();
+      const index = steps.indexOf(currentSegment);
+      setOrder(form.getFieldsValue(true));
 
       if (index !== -1 && index < steps.length - 1) {
-        setStep(steps[index + 1]);
+        navigateTo(steps[index + 1]);
       }
     } catch {
-      // validation failed
+      // validation failed — Ant Design shows field errors automatically
     }
   };
 
   const prevStep = () => {
-    const values = form.getFieldsValue();
-    const steps = stepFlow[values.typeOfCloth];
-    const index = steps.indexOf(step);
-
-    if (index > 0) {
-      setStep(steps[index - 1]);
-    }
+    const steps = getSteps();
+    const index = steps.indexOf(currentSegment);
+    if (index > 0) navigateTo(steps[index - 1]);
   };
 
   const onSubmit = async (values) => {
@@ -76,12 +89,7 @@ const NewOrder = () => {
       }
 
       if (res) {
-        setOrders((prev) =>
-          values?._id
-            ? prev.map((o) => (o._id === values._id ? res : o))
-            : [...prev, res]
-        );
-
+        setOrder({});
         openNotification("success", "topRight", "Success", "Saved");
         Nav("/");
       }
@@ -90,32 +98,16 @@ const NewOrder = () => {
     }
   };
 
-  const renderStep = () => {
-    switch (step) {
-      case 1:
-        return <PersonalDetails />;
-      // case 2:
-      //   return <KameezBlock />;
-      // case 3:
-      //   return <ShalwarBlock />;
-      // case 4:
-      // case 6:
-      //   return <ShirtBlock />;
-      // case 5:
-      // case 7:
-      //   return <PentBlock />;
-      // case 8:
-      //   return <WaistCortBlock />;
-      // case "final":
-      //   return <NotesBlock />;
-      default:
-        return null;
-    }
-  };
+  const isFinalStep = currentSegment === "notes";
+  const isFirstStep = currentSegment === "details";
 
   return (
     <div className="bold-order-wrapper">
-      <Card className="bold-order-card" bordered={false}>
+      <Card
+        className="bold-order-card"
+        bordered={false}
+        styles={{ body: { padding: "0px" } }}
+      >
         <Form
           form={form}
           layout="vertical"
@@ -124,29 +116,60 @@ const NewOrder = () => {
         >
           <AnimatePresence mode="wait">
             <motion.div
-              key={step}
+              key={location.pathname}
               initial={{ opacity: 0, y: 40, scale: 0.97 }}
               animate={{ opacity: 1, y: 0, scale: 1 }}
               exit={{ opacity: 0, y: -40, scale: 0.97 }}
               transition={{ duration: 0.45, ease: "easeInOut" }}
             >
-              {renderStep()}
+              <Routes>
+                <Route
+                  index
+                  element={<Navigate to={`${BASE}/details`} replace />}
+                />
+                <Route
+                  path="details"
+                  element={<PersonalDetails form={form} />}
+                />
+                <Route path="kameez" element={<KameezMeasurements />} />
+                <Route path="shalwar" element={<ShalwarMeasurements />} />
+                <Route path="shirt" element={<ShirtBlock />} />
+                <Route path="trouser" element={<TrouserBlock />} />
+                <Route path="waistcoat" element={<WaistCoatBlock />} />
+                <Route path="notes" element={<NotesBlock />} />
+              </Routes>
             </motion.div>
           </AnimatePresence>
 
           <div className="step-controls">
-            {step !== 1 && (
-              <Button onClick={prevStep} size="large">
+            {!isFirstStep && (
+              <Button
+                onClick={prevStep}
+                size="large"
+                styles={{ root: { width: "300px" } }}
+              >
                 Back
               </Button>
             )}
 
-            {step !== "final" ? (
-              <Button type="primary" size="large" onClick={nextStep}>
+            {!isFinalStep ? (
+              <Button
+                key="continueButton"
+                type="primary"
+                size="large"
+                styles={{ root: { width: "300px" } }}
+                onClick={nextStep}
+              >
                 Continue
               </Button>
             ) : (
-              <Button type="primary" size="large" htmlType="submit">
+              <Button
+                key="submitButton"
+                type="primary"
+                size="large"
+                styles={{ root: { width: "300px" } }}
+                htmlType="submit"
+              >
                 Submit Order
               </Button>
             )}

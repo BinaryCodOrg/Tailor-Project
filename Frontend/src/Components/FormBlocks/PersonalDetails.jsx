@@ -16,7 +16,7 @@ const clothOptions = [
   { title: "Dress Pent", image: Dress_pent },
 ];
 
-const PersonalDetails = () => {
+const PersonalDetails = ({ form }) => {
   return (
     <motion.div
       initial="hidden"
@@ -34,14 +34,19 @@ const PersonalDetails = () => {
           visible: { opacity: 1, y: 0 },
         }}
       >
-        <h2 className="bold-title">Create New Order</h2>
+        <h2
+          className="bold-title"
+          onClick={() => console.log(form.getFieldValue("typeOfCloth"))}
+        >
+          Create New Order
+        </h2>
         <p className="bold-subtitle">
           Enter customer details and select cloth type
         </p>
       </motion.div>
 
-      <Row gutter={[24, 20]} className="mt-4">
-        <Col xs={24} md={12}>
+      <Row gutter={[24]} className="mt-3">
+        <Col xs={24} md={8}>
           <Form.Item
             label="Customer Name"
             name="name"
@@ -51,7 +56,7 @@ const PersonalDetails = () => {
           </Form.Item>
         </Col>
 
-        <Col xs={24} md={12}>
+        <Col xs={24} md={8}>
           <Form.Item
             label="Phone Number"
             name="phoneNumber"
@@ -64,7 +69,7 @@ const PersonalDetails = () => {
           </Form.Item>
         </Col>
 
-        <Col xs={24} md={12}>
+        <Col xs={24} md={8}>
           <Form.Item
             label="Received Date"
             name="receivedDate"
@@ -74,7 +79,7 @@ const PersonalDetails = () => {
           </Form.Item>
         </Col>
 
-        <Col xs={24} md={12}>
+        <Col xs={24} md={8}>
           <Form.Item
             label="Return Date"
             name="returnDate"
@@ -84,7 +89,7 @@ const PersonalDetails = () => {
           </Form.Item>
         </Col>
 
-        <Col xs={24} md={12}>
+        <Col xs={24} md={8}>
           <Form.Item
             label="Number of Suits"
             name="numberOfSuits"
@@ -112,7 +117,8 @@ const PersonalDetails = () => {
                 }
               >
                 {({ getFieldValue, setFieldsValue }) => {
-                  const selected = getFieldValue("typeOfCloth") === type.title;
+                  const selected =
+                    getFieldValue("typeOfCloth")?.title === type?.title;
 
                   return (
                     <Card

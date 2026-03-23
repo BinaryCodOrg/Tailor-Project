@@ -1,44 +1,37 @@
-import { atom } from "recoil"
+import { atom } from "recoil";
+import { recoilPersist } from "recoil-persist";
+
+// Tell it to use sessionStorage instead of localStorage
+const { persistAtom } = recoilPersist({
+  storage: sessionStorage, // ✅ use session storage
+});
 
 export const defaultUrl = atom({
-    key: "defaultUrl",
-    default: "http://localhost:7000",
-    // default: "",
+  key: "defaultUrl",
+  default: "http://localhost:7000",
+  // default: "",
 });
 
 export const AllData = atom({
-    key: "AllDat",
-    default: [],
-    // default: "",
+  key: "AllDat",
+  default: [],
+  // default: "",
 });
 
 export const SelectedLang = atom({
-    key: "SelectedLang",
-    default: "eng",
-    // default: "",
+  key: "SelectedLang",
+  default: "eng",
+  // default: "",
 });
 
 export const WebContent = atom({
-    key: "WebContent",
-    default: {},
-    // default: "",
+  key: "WebContent",
+  default: {},
+  // default: "",
 });
 
-export const Orders = atom({
-    key: "Orders",
-    default: [
-        // {
-        //     index: 1,
-        //     receivedDate: "2024-12-01",
-        //     name: "John Doe",
-        //     phoneNumber: "0300-1234567",
-        //     returnDate: "2024-12-01",
-        //     status: "Delivered",
-        // },
-    ],
-    // default: "",
+export const Order = atom({
+  key: "Order",
+  default: {},
+  effects_UNSTABLE: [persistAtom], // enables localStorage persistence
 });
-
-
-
-

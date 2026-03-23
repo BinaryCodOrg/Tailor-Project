@@ -1,0 +1,29 @@
+.kameez-svg {
+  width: 100%;
+  max-width: 340px;
+  fill: none;
+  stroke-width: 2;
+  transition: all 0.3s ease;
+}
+
+.kameez-svg .outline {
+  stroke: #bbb;
+}
+
+.kameez-svg .highlight {
+  stroke: #111;
+  stroke-width: 4;
+  filter: drop-shadow(0 0 6px rgba(0, 0, 0, 0.25));
+}
+
+.placket {
+  stroke: #888;
+  stroke-dasharray: 4;
+}
+
+.kameez-preview-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}

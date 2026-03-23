@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import {
   HiOutlineSquares2X2,
-  HiOutlineUserGroup,
   HiOutlineCog6Tooth,
   HiOutlineQuestionMarkCircle,
   HiOutlineArrowRightOnRectangle,
@@ -13,17 +12,16 @@ import { TbTruckDelivery } from "react-icons/tb";
 import { PiHandCoinsFill } from "react-icons/pi";
 import { MdOutlineAccountBalanceWallet } from "react-icons/md";
 import { RiAccountPinCircleFill } from "react-icons/ri";
-import { FaMoneyBillWave } from "react-icons/fa6";
+import { FaMoneyBillWave, FaShirt } from "react-icons/fa6";
 import AdviserS1 from "../../assets/Images/logos/logo.png";
 import "./AdminSideBar.css";
-import { BsScissors } from "react-icons/bs";
 
 const MENU_ITEMS = [
   { key: "/", label: "Dashboard", icon: HiOutlineSquares2X2 },
   {
-    key: "/NewOrder",
+    key: "/orders/new/details",
     label: "New Order",
-    icon: BsScissors,
+    icon: FaShirt,
     badge: null,
   },
   {
@@ -82,11 +80,16 @@ const AdminSideBar = ({ collapsed, setCollapsed }) => {
             role="button"
             tabIndex={0}
             onClick={() => setCollapsed((prev) => !prev)}
-            onKeyDown={(e) => e.key === "Enter" && setCollapsed((prev) => !prev)
+            onKeyDown={(e) =>
+              e.key === "Enter" && setCollapsed((prev) => !prev)
             }
           >
             <div className="admin-sidebar-logo">
-              <img src={AdviserS1} alt="Logo" className={collapsed ? "ps-2" : ""} />
+              <img
+                src={AdviserS1}
+                alt="Logo"
+                className={collapsed ? "ps-2" : ""}
+              />
             </div>
             {!collapsed && (
               <div className="d-flex flex-column justify-content-center align-itmes-center">
@@ -215,7 +218,7 @@ const AdminSideBar = ({ collapsed, setCollapsed }) => {
               onClick={() => {
                 if (item.key === "logout") {
                   // Add logout logic
-                  navigate("/Login221")
+                  navigate("/Login221");
                 }
               }}
             >
@@ -230,11 +233,10 @@ const AdminSideBar = ({ collapsed, setCollapsed }) => {
         {/* Download card */}
         {!collapsed && (
           <div className="admin-sidebar-download">
-            <h4 className="admin-sidebar-download-title">
-              Pro Plan Available
-            </h4>
+            <h4 className="admin-sidebar-download-title">Pro Plan Available</h4>
             <p className="admin-sidebar-download-text">
-              Upgrade to our Pro Plan for advanced features and priority support.
+              Upgrade to our Pro Plan for advanced features and priority
+              support.
             </p>
             <button type="button" className="admin-sidebar-download-btn">
               Buy Pro Plan
