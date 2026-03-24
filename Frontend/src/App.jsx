@@ -14,6 +14,7 @@ import Login from "./Auth/Login";
 import MasonryHero from "./assets/Custom/Masonry/MasonryHero";
 import Register from "./Auth/Register";
 import AuthPage from "./Auth/AuthPage";
+import WebLandingPage from "./Components/Website/WebLandingPage";
 
 function App() {
   let location = useLocation();
@@ -55,7 +56,8 @@ function App() {
         <Route path="/ResourceBlock/*" element={<ResourceBlock />} />
         <Route path="/auth/*" element={<AuthPage />} />
         <Route path="/Masonry" element={<MasonryHero />} />
-        <Route path="/*" element={<LandingPage />} />
+        <Route path="/admin/*" element={<LandingPage />} />
+        <Route path="/*" element={<WebLandingPage />} />
       </Routes>
     </div>
   );

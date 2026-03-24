@@ -8,44 +8,58 @@ import {
   HiOutlineChevronDown,
   HiOutlineChevronRight,
 } from "react-icons/hi2";
-import { TbTruckDelivery } from "react-icons/tb";
-import { PiHandCoinsFill } from "react-icons/pi";
-import { MdOutlineAccountBalanceWallet } from "react-icons/md";
-import { RiAccountPinCircleFill } from "react-icons/ri";
-import { FaMoneyBillWave, FaShirt } from "react-icons/fa6";
+import { MdOutlineReceiptLong } from "react-icons/md";
+import { FaShirt } from "react-icons/fa6";
+import { BsPatchQuestion } from "react-icons/bs";
 import AdviserS1 from "../../assets/Images/logos/logo.png";
 import "./AdminSideBar.css";
 
 const MENU_ITEMS = [
-  { key: "/", label: "Dashboard", icon: HiOutlineSquares2X2 },
+  { key: "/admin/dashboard", label: "Dashboard", icon: HiOutlineSquares2X2 },
   {
-    key: "/orders/new/details",
+    key: "/admin/orders/new/details",
     label: "New Order",
     icon: FaShirt,
     badge: null,
   },
   {
-    key: "sale",
-    label: "Sale",
-    icon: FaMoneyBillWave,
-    children: [
-      { key: "/Delivery", label: "Delivery", icon: TbTruckDelivery },
-      { key: "/Cash", label: "Cash", icon: PiHandCoinsFill },
-      {
-        key: "/Account",
-        label: "Account",
-        icon: MdOutlineAccountBalanceWallet,
-      },
-      { key: "/Ikram", label: "Ikram", icon: RiAccountPinCircleFill },
-      { key: "/islam", label: "islam", icon: RiAccountPinCircleFill },
-    ],
+    key: "/admin/subscriptions",
+    label: "Subscriptions",
+    icon: MdOutlineReceiptLong,
+    badge: null,
   },
+  {
+    key: "/admin/faq-section",
+    label: "Faq Section",
+    icon: BsPatchQuestion,
+    badge: null,
+  },
+  // {
+  //   key: "/adminsale",
+  //   label: "Sale",
+  //   icon: FaMoneyBillWave,
+  //   children: [
+  //     { key: "/admin/Delivery", label: "Delivery", icon: TbTruckDelivery },
+  //     { key: "/admin/Cash", label: "Cash", icon: PiHandCoinsFill },
+  //     {
+  //       key: "/admin/Account",
+  //       label: "Account",
+  //       icon: MdOutlineAccountBalanceWallet,
+  //     },
+  //     { key: "/admin/Ikram", label: "Ikram", icon: RiAccountPinCircleFill },
+  //     { key: "/admin/islam", label: "islam", icon: RiAccountPinCircleFill },
+  //   ],
+  // },
 ];
 
 const BOTTOM_ITEMS = [
-  { key: "settings", label: "Settings", icon: HiOutlineCog6Tooth },
-  { key: "help", label: "Help", icon: HiOutlineQuestionMarkCircle },
-  { key: "logout", label: "Logout", icon: HiOutlineArrowRightOnRectangle },
+  // { key: "/adminsettings", label: "Settings", icon: HiOutlineCog6Tooth },
+  { key: "/admin/help", label: "Help", icon: HiOutlineQuestionMarkCircle },
+  {
+    key: "/admin/auth/login",
+    label: "Logout",
+    icon: HiOutlineArrowRightOnRectangle,
+  },
 ];
 
 const AdminSideBar = ({ collapsed, setCollapsed }) => {
@@ -215,12 +229,7 @@ const AdminSideBar = ({ collapsed, setCollapsed }) => {
               key={item.key}
               type="button"
               className="admin-sidebar-item"
-              onClick={() => {
-                if (item.key === "logout") {
-                  // Add logout logic
-                  navigate("/Login221");
-                }
-              }}
+              onClick={() => navigate(item.key)}
             >
               <item.icon className="admin-sidebar-item-icon" size={20} />
               {!collapsed && (
@@ -238,7 +247,11 @@ const AdminSideBar = ({ collapsed, setCollapsed }) => {
               Upgrade to our Pro Plan for advanced features and priority
               support.
             </p>
-            <button type="button" className="admin-sidebar-download-btn">
+            <button
+              type="button"
+              className="admin-sidebar-download-btn"
+              onClick={() => navigate("/subscriptions")}
+            >
               Buy Pro Plan
             </button>
           </div>

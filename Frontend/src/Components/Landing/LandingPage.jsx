@@ -48,7 +48,7 @@ const LandingPage = () => {
           }}
         >
           <Routes>
-            <Route path="/" element={<DashBoard />} />
+            {/* <Route path="/" element={<DashBoard />} /> */}
             {allRouts.map((elem, index) => {
               return <Route path={elem.route} element={elem.component} />;
             })}
