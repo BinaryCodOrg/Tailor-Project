@@ -1,9 +1,11 @@
 import React from "react";
 import { Button, Typography } from "antd";
+import { useNavigate } from "react-router-dom";
 
 const { Title, Paragraph } = Typography;
 
 const HeroSection = () => {
+  let nev = useNavigate();
   return (
     <div
       style={{
@@ -34,11 +36,12 @@ const HeroSection = () => {
             fontWeight: 600,
             marginRight: 15,
           }}
+          onClick={() => nev("/auth/login")}
         >
           Get Started
         </Button>
 
-        <Button size="large" ghost>
+        <Button size="large" ghost onClick={() => nev("/admin/dashboard")}>
           Learn More
         </Button>
       </div>

@@ -9,32 +9,32 @@ import DashBoard from "../Components/Landing/DashBoard";
 const Language = {
   Pages: [
     // {
-    //   route: "/admin/",
+    //   route: "/",
     //   component: <WebLandingPage />,
     //   condition: (CRObject) => false,
     // },
     {
-      route: "/admin/dashboard",
+      route: "/dashboard",
       component: <DashBoard />,
       condition: (CRObject) => false,
     },
     {
-      route: "/admin/orders/new/*",
+      route: "/orders/new/*",
       component: <NewOrder />,
       condition: (CRObject) => false,
     },
     {
-      route: "/admin/subscriptions",
+      route: "/subscriptions",
       component: <SubscriptionSection />,
       condition: (CRObject) => false,
     },
     {
-      route: "/admin/faq-section",
+      route: "/faq-section",
       component: <FaqSection />,
       condition: (CRObject) => false,
     },
     {
-      route: "/admin/help",
+      route: "/help",
       component: <HelpSection />,
       condition: (CRObject) => false,
     },

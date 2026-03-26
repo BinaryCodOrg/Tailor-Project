@@ -56,7 +56,7 @@ const BOTTOM_ITEMS = [
   // { key: "/adminsettings", label: "Settings", icon: HiOutlineCog6Tooth },
   { key: "/admin/help", label: "Help", icon: HiOutlineQuestionMarkCircle },
   {
-    key: "/admin/auth/login",
+    key: "/auth/login",
     label: "Logout",
     icon: HiOutlineArrowRightOnRectangle,
   },
