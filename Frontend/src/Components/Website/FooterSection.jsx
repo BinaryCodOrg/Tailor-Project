@@ -40,7 +40,7 @@ const FooterSection = () => {
                 }}
               />
               <Title level={4} style={{ color: "#ffffff", margin: 0 }}>
-                TailorPro
+                Stitch &amp; Stone
               </Title>
             </div>
 
@@ -155,7 +155,7 @@ const FooterSection = () => {
           }}
         >
           <Text style={{ color: "#6b7280" }}>
-            © {new Date().getFullYear()} TailorPro. All rights reserved.
+            © {new Date().getFullYear()} Stitch &amp; Stone. All rights reserved.
           </Text>
 
           <div style={{ fontSize: 22 }}>
