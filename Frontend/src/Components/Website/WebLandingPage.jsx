@@ -12,13 +12,18 @@ import { useNavigate } from "react-router-dom";
 import WebLandingNav from "./WebLandingNav";
 import FooterSection from "./FooterSection";
 import "./WebLandingPage.css";
+import UsamaProfileImage from "../../assets/Images/Team/usama.png";
 
 const IMAGES = {
   hero: "https://images.unsplash.com/photo-1558171813-4c088753af8f?auto=format&fit=crop&w=1920&q=80",
-  aboutA: "https://images.unsplash.com/photo-1589939705384-5185137a7f0f?auto=format&fit=crop&w=800&q=80",
-  aboutB: "https://images.unsplash.com/photo-1594938298603-c8148c4dae35?auto=format&fit=crop&w=800&q=80",
-  aboutC: "https://images.unsplash.com/photo-1620799140408-edc6dcb6d633?auto=format&fit=crop&w=600&q=80",
-  skills: "https://images.unsplash.com/photo-1507679799987-c73779587ccf?auto=format&fit=crop&w=900&q=80",
+  aboutA:
+    "https://images.unsplash.com/photo-1589939705384-5185137a7f0f?auto=format&fit=crop&w=800&q=80",
+  aboutB:
+    "https://images.unsplash.com/photo-1594938298603-c8148c4dae35?auto=format&fit=crop&w=800&q=80",
+  aboutC:
+    "https://images.unsplash.com/photo-1620799140408-edc6dcb6d633?auto=format&fit=crop&w=600&q=80",
+  skills:
+    "https://images.unsplash.com/photo-1507679799987-c73779587ccf?auto=format&fit=crop&w=900&q=80",
   contactBg:
     "https://images.unsplash.com/photo-1521587760476-6c12a4b0402b?auto=format&fit=crop&w=1920&q=80",
   blogFeatured:
@@ -98,22 +103,27 @@ const TESTIMONIALS = [
 
 const TEAM = [
   {
-    name: "Hassan Imran",
-    role: "Head of Product",
-    photo:
-      "https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&w=600&q=80",
+    name: "Usama Faheem Ahmed",
+    role: "Co-founder & Frontend Developer & Dev Ops Manager",
+    photo: UsamaProfileImage,
   },
   {
-    name: "Ayesha Malik",
-    role: "Customer Success",
+    name: "Usama Saeed",
+    role: "Co-founder & Backend Developer",
     photo:
-      "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=600&q=80",
+      "https://binarycod.com/wp-content/uploads/2025/11/ChatGPT-Image-Nov-25-2025-12_05_23-PM-1024x1024.png",
   },
   {
-    name: "Omar Siddiqui",
-    role: "Solutions Engineer",
+    name: "Wahab Hameed",
+    role: "co-founder & Quality Assurance Developer & Business Developer",
     photo:
-      "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?auto=format&fit=crop&w=600&q=80",
+      "https://binarycod.com/wp-content/uploads/2025/11/WhatsApp-Image-2025-11-22-at-2.34.36-PM-1-1024x1024.jpeg",
+  },
+  {
+    name: "Syed Komail Abbas",
+    role: "co-founder & Developer",
+    photo:
+      "https://binarycod.com/wp-content/uploads/2025/12/Gemini_Generated_Image_gltfpjgltfpjgltf-1024x1024.png",
   },
 ];
 
@@ -129,7 +139,7 @@ const BLOG_POSTS = [
     title: "Why boutiques are digitising measurement cards this season",
   },
   {
-    img: "https://images.unsplash.com/photo-1490111718993-d98654ce9cf9?auto=format&fit=crop&w=600&q=80",
+    img: "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?auto=format&fit=crop&w=600&q=80",
     date: "Feb 14, 2026",
     title: "From backlog to balance: scheduling stitch-heavy weeks",
   },
@@ -237,20 +247,16 @@ const WebLandingPage = () => {
                   source of truth—orders, garments, and customer history stay
                   aligned.
                 </p>
-                <p style={{ color: "#cbd5e1", lineHeight: 1.65 }}>
+                <p style={{ color: "#64748b", lineHeight: 1.65 }}>
                   Whether you run a single master tailor bench or a multi-branch
                   brand, the same structured data model keeps your standards
                   consistent.
                 </p>
                 <div className="wlp-signature">
-                  <img
-                    src={TEAM[0].photo}
-                    alt=""
-                    loading="lazy"
-                  />
+                  <img src={TEAM[0].photo} alt="" loading="lazy" />
                   <div>
-                    <strong style={{ color: "#fff" }}>Hassan Imran</strong>
-                    <div style={{ color: "#94a3b8", fontSize: "0.9rem" }}>
+                    <strong style={{ color: "#0f172a" }}>Hassan Imran</strong>
+                    <div style={{ color: "#475569", fontSize: "0.9rem" }}>
                       Head of Product, Stitch &amp; Stone
                     </div>
                   </div>
@@ -283,7 +289,7 @@ const WebLandingPage = () => {
                       window.open(
                         "https://www.youtube.com/results?search_query=tailor+shop+management",
                         "_blank",
-                        "noopener,noreferrer"
+                        "noopener,noreferrer",
                       )
                     }
                   >
@@ -345,25 +351,31 @@ const WebLandingPage = () => {
             </div>
             <div>
               <div className="wlp-stat-num">98%</div>
-              <div className="wlp-stat-label">On-time delivery satisfaction</div>
+              <div className="wlp-stat-label">
+                On-time delivery satisfaction
+              </div>
             </div>
           </div>
           <div className="wlp-partners">
-            {["Atelier One", "Thread & Co", "Verve Clothiers", "Northline", "Maison Cut"].map(
-              (name) => (
-                <span
-                  key={name}
-                  style={{
-                    fontWeight: 700,
-                    fontSize: "0.95rem",
-                    color: "#64748b",
-                    letterSpacing: "0.04em",
-                  }}
-                >
-                  {name}
-                </span>
-              )
-            )}
+            {[
+              "Atelier One",
+              "Thread & Co",
+              "Verve Clothiers",
+              "Northline",
+              "Maison Cut",
+            ].map((name) => (
+              <span
+                key={name}
+                style={{
+                  fontWeight: 700,
+                  fontSize: "0.95rem",
+                  color: "#64748b",
+                  letterSpacing: "0.04em",
+                }}
+              >
+                {name}
+              </span>
+            ))}
           </div>
         </div>
       </section>
@@ -372,7 +384,11 @@ const WebLandingPage = () => {
         <div className="wlp-container">
           <div className="wlp-skills-grid">
             <div className="wlp-skills-img">
-              <img src={IMAGES.skills} alt="Professional tailoring" loading="lazy" />
+              <img
+                src={IMAGES.skills}
+                alt="Professional tailoring"
+                loading="lazy"
+              />
             </div>
             <div>
               <h2 className="wlp-serif wlp-section-title">
@@ -456,7 +472,11 @@ const WebLandingPage = () => {
             ))}
           </div>
           <div className="wlp-center-actions">
-            <Button type="primary" className="wlp-btn-primary" onClick={() => navigate("/auth/login")}>
+            <Button
+              type="primary"
+              className="wlp-btn-primary"
+              onClick={() => navigate("/auth/login")}
+            >
               View all members
             </Button>
           </div>
@@ -466,7 +486,10 @@ const WebLandingPage = () => {
       <section className="wlp-consult" aria-label="Consultation">
         <div className="wlp-consult-inner">
           <div>
-            <h2 className="wlp-serif" style={{ fontSize: "clamp(1.5rem,3vw,2rem)", margin: "0 0 12px" }}>
+            <h2
+              className="wlp-serif"
+              style={{ fontSize: "clamp(1.5rem,3vw,2rem)", margin: "0 0 12px" }}
+            >
               Book a walkthrough tailored to your workshop.
             </h2>
             <p style={{ color: "#cbd5e1", margin: 0, maxWidth: 520 }}>
@@ -479,7 +502,7 @@ const WebLandingPage = () => {
             <p style={{ color: "#64748b", margin: "8px 0 16px" }}>
               Call us directly
             </p>
-            <p className="wlp-consult-phone">+92 300 0000000</p>
+            <p className="wlp-consult-phone">+92 317 7014574</p>
           </div>
         </div>
       </section>

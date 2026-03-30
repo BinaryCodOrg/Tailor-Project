@@ -6,6 +6,7 @@ import {
   LinkedinFilled,
   InstagramFilled,
 } from "@ant-design/icons";
+import logo from "../../assets/Images/logos/logo.png";
 
 const { Title, Text } = Typography;
 
@@ -34,13 +35,25 @@ const FooterSection = () => {
                 style={{
                   width: 40,
                   height: 40,
-                  background: "#2563eb",
-                  borderRadius: 8,
-                  marginRight: 10,
+                  borderRadius: 6,
+                  marginRight: 12,
                 }}
-              />
-              <Title level={4} style={{ color: "#ffffff", margin: 0 }}>
-                Stitch &amp; Stone
+              >
+                <img
+                  src={logo}
+                  alt="Logo"
+                  style={{ width: "100%", height: "100%" }}
+                />
+              </div>
+              <Title
+                level={4}
+                style={{
+                  color: "#ffffff",
+                  margin: 0,
+                  fontFamily: "Fraunces, sans-serif",
+                }}
+              >
+                Stitch & Stone
               </Title>
             </div>
 
@@ -155,16 +168,17 @@ const FooterSection = () => {
           }}
         >
           <Text style={{ color: "#6b7280" }}>
-            © {new Date().getFullYear()} Stitch &amp; Stone. All rights reserved.
+            © {new Date().getFullYear()} Stitch &amp; Stone. All rights
+            reserved.
           </Text>
 
           <div style={{ fontSize: 22 }}>
-            <FacebookFilled style={{ marginRight: 15, color: "#2563eb" }} />
+            <FacebookFilled style={{ marginRight: 15, color: "#f7f9fd" }} />
             <TwitterSquareFilled
-              style={{ marginRight: 15, color: "#2563eb" }}
+              style={{ marginRight: 15, color: "#f7f9fd" }}
             />
-            <LinkedinFilled style={{ marginRight: 15, color: "#2563eb" }} />
-            <InstagramFilled style={{ color: "#2563eb" }} />
+            <LinkedinFilled style={{ marginRight: 15, color: "#f7f9fd" }} />
+            <InstagramFilled style={{ color: "#f7f9fd" }} />
           </div>
         </div>
       </div>

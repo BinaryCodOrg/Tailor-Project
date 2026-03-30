@@ -116,7 +116,7 @@
 }
 
 .wlp-nav-brand span {
-  font-family: var(--LogoFont, "Fraunces", serif);
+  font-family: var(--LogoFont, "Fraunces", serif) !important;
   font-size: 1.15rem;
   font-weight: 700;
 }
@@ -251,7 +251,11 @@
 /* About */
 .wlp-about {
   padding: 100px 0;
-  background: var(--wlp-bg-dark);
+  background: #fff;
+}
+
+.wlp-about .wlp-section-title {
+  color: #0f172a;
 }
 
 .wlp-about-grid {
@@ -271,7 +275,7 @@
 .wlp-about-imgs {
   display: grid;
   grid-template-rows: 1fr 1fr;
-  gap: 16px;
+  gap: 28px;
   max-height: 520px;
 }
 
@@ -285,7 +289,7 @@
 .wlp-about-imgs-row {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 16px;
+  gap: 7px;
   min-height: 200px;
 }
 
@@ -331,12 +335,19 @@
 }
 
 .wlp-service-card {
-  background: var(--wlp-bg-card);
+  background: var(--wlp);
   border: 1px solid rgba(148, 163, 184, 0.12);
   border-radius: 12px;
   padding: 28px 24px;
-  transition: border-color 0.2s, transform 0.2s;
-}
+  transition:
+    border-color 0.2s,
+    transform 0.2s;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
 
 .wlp-service-card:hover {
   border-color: rgba(37, 99, 235, 0.45);
@@ -569,7 +580,7 @@
 
 @media (min-width: 768px) {
   .wlp-team-grid {
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(4, 1fr);
   }
 }
 
@@ -662,12 +673,15 @@
   background-position: center;
   filter: brightness(0.35);
 }
+.wlp-contact .wlp-section-title {
+  color: #0f172a;
+}
 
 .wlp-contact::after {
   content: "";
   position: absolute;
   inset: 0;
-  background: rgba(15, 23, 42, 0.88);
+  background: rgb(255, 255, 255);
 }
 
 .wlp-contact .wlp-container {
@@ -678,7 +692,7 @@
 .wlp-contact-form-wrap {
   max-width: 720px;
   margin: 0 auto;
-  background: rgba(30, 41, 59, 0.85);
+  background: linear-gradient(135deg, #1e3a8a 0%, #172554 100%);
   border: 1px solid rgba(148, 163, 184, 0.2);
   border-radius: 16px;
   padding: 40px 32px;
@@ -696,7 +710,11 @@
 /* Blog */
 .wlp-blog {
   padding: 100px 0;
-  background: var(--wlp-bg-dark);
+  background: var(--wlp-light);
+}
+
+.wlp-blog .wlp-section-title {
+  color: #0f172a;
 }
 
 .wlp-blog-featured {
