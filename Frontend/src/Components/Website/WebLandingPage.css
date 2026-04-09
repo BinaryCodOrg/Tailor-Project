@@ -86,7 +86,12 @@
   position: sticky;
   top: 0;
   z-index: 1000;
-  background: rgba(15, 23, 42, 0.92);
+  background: linear-gradient(
+    105deg,
+    rgba(15, 23, 42, 0.92) 0%,
+    rgb(30, 77, 185) 45%,
+    rgb(6, 64, 224) 100%
+  );
   backdrop-filter: blur(12px);
   border-bottom: 1px solid rgba(148, 163, 184, 0.12);
 }
@@ -313,7 +318,7 @@
 /* Services */
 .wlp-services {
   padding: 100px 0;
-  background: #0c1222;
+  background: rgba(6, 64, 224, 0.35);
 }
 
 .wlp-service-grid {
@@ -336,22 +341,26 @@
 
 .wlp-service-card {
   background: var(--wlp);
-  border: 1px solid rgba(148, 163, 184, 0.12);
+  border: 1px solid rgba(255, 255, 255, 0.12);
   border-radius: 12px;
   padding: 28px 24px;
   transition:
     border-color 0.2s,
     transform 0.2s;
 
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-  }
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
 
 .wlp-service-card:hover {
-  border-color: rgba(37, 99, 235, 0.45);
+  border-color: rgb(255, 255, 255);
   transform: translateY(-3px);
+}
+.wlp-service-card:hover .wlp-service-icon {
+  color: #fff;
+  background: rgba(124, 163, 247, 0.35);
 }
 
 .wlp-service-icon {
@@ -494,7 +503,7 @@
 /* Testimonials */
 .wlp-testimonials {
   padding: 100px 0;
-  background: #0c1222;
+  background: var(--wlp-bg-dark);
 }
 
 .wlp-testimonial-grid {
@@ -672,6 +681,7 @@
   background-size: cover;
   background-position: center;
   filter: brightness(0.35);
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='-60 20 100 100' preserveAspectRatio='none'%3E%3Cpath d='M0,120 Q20,1 60,45' stroke='%23fa8072' stroke-width='2' stroke-linecap='round' fill='none'/%3E%3Cpath d='M4,120 Q20,20 60,45' stroke='%23fa8072' stroke-width='2' stroke-linecap='round' fill='none'/%3E%3C/svg%3E");
 }
 .wlp-contact .wlp-section-title {
   color: #0f172a;

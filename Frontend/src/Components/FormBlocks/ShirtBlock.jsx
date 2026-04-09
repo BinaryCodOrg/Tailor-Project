@@ -47,7 +47,7 @@ const ShirtBlock = () => {
           <Col xs={24} md={12}>
             <Form.Item
               label="Shoulder Width"
-              name="shoulderWidth"
+              name="shirtShoulderWidth"
               rules={[{ required: true }]}
             >
               <InputNumber
@@ -62,7 +62,7 @@ const ShirtBlock = () => {
 
           {/* Armhole */}
           <Col xs={24} md={12}>
-            <Form.Item label="Armhole" name="armhole">
+            <Form.Item label="Armhole" name="shirtArmhole">
               <InputNumber
                 size="large"
                 style={{ width: "100%" }}
@@ -75,7 +75,7 @@ const ShirtBlock = () => {
 
           {/* Sleeve Length */}
           <Col xs={24} md={12}>
-            <Form.Item label="Sleeve Length" name="sleeveLength">
+            <Form.Item label="Sleeve Length" name="shirtSleeveLength">
               <InputNumber
                 size="large"
                 style={{ width: "100%" }}
@@ -88,7 +88,7 @@ const ShirtBlock = () => {
 
           {/* Chest Circumference */}
           <Col xs={24} md={12}>
-            <Form.Item label="Chest Circumference" name="chestCircumference">
+            <Form.Item label="Chest Circumference" name="shirtChestCircumference">
               <InputNumber
                 size="large"
                 style={{ width: "100%" }}
@@ -101,7 +101,7 @@ const ShirtBlock = () => {
 
           {/* Waist Circumference */}
           <Col xs={24} md={12}>
-            <Form.Item label="Waist Circumference" name="waistCircumference">
+            <Form.Item label="Waist Circumference" name="shirtWaistCircumference">
               <InputNumber
                 size="large"
                 style={{ width: "100%" }}
@@ -114,7 +114,7 @@ const ShirtBlock = () => {
 
           {/* Hem Width */}
           <Col xs={24} md={12}>
-            <Form.Item label="Hem Width" name="hemWidth">
+            <Form.Item label="Hem Width" name="shirtHemWidth">
               <InputNumber
                 size="large"
                 style={{ width: "100%" }}
@@ -127,7 +127,7 @@ const ShirtBlock = () => {
 
           {/* Collar Style */}
           <Col xs={24} md={12}>
-            <Form.Item label="Collar Style" name="collarStyle">
+            <Form.Item label="Collar Style" name="shirtCollarStyle">
               <Select
                 size="large"
                 onFocus={() => setActiveField("collar")}
@@ -141,7 +141,7 @@ const ShirtBlock = () => {
 
           {/* Collar Size */}
           <Col xs={24} md={12}>
-            <Form.Item label="Collar Size" name="collarSize">
+            <Form.Item label="Collar Size" name="shirtCollarSize">
               <InputNumber
                 size="large"
                 style={{ width: "100%" }}
@@ -154,7 +154,7 @@ const ShirtBlock = () => {
 
           {/* Collar Design Code */}
           <Col xs={24} md={12}>
-            <Form.Item label="Collar Design Code" name="collarDesignCode">
+            <Form.Item label="Collar Design Code" name="shirtCollarDesignCode">
               <Select
                 size="large"
                 onFocus={() => setActiveField("collar")}
@@ -171,7 +171,7 @@ const ShirtBlock = () => {
 
           {/* Chest Pocket */}
           <Col xs={24} md={12}>
-            <Form.Item label="Chest Pocket" name="chestPocket">
+            <Form.Item label="Chest Pocket" name="shirtChestPocket">
               <Select
                 size="large"
                 onFocus={() => setActiveField("pocket")}

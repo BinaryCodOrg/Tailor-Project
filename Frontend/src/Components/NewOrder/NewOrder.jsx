@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useRef } from "react";
 import { Form, Card, Button } from "antd";
 import { motion, AnimatePresence } from "framer-motion";
 import { useRecoilState, useRecoilValue } from "recoil";
@@ -19,7 +19,7 @@ import TrouserBlock from "../FormBlocks/TrouserBlock";
 import WaistCoatBlock from "../FormBlocks/WaistCortBlock";
 import NotesBlock from "../FormBlocks/NotesBlock";
 
-const BASE = "/orders/new";
+const BASE = "/admin/orders/new";
 
 // Maps cloth type to an ordered list of route segments
 const stepFlow = {
@@ -40,11 +40,28 @@ const NewOrder = () => {
 
   // Derive current segment from URL, e.g. "/orders/new/shirt" → "shirt"
   const currentSegment = location.pathname.replace(`${BASE}/`, "") || "details";
+  const previousSegmentRef = useRef(currentSegment);
 
   const getSteps = () => {
     const { typeOfCloth } = form.getFieldsValue(true);
     return stepFlow[typeOfCloth?.title] ?? ["details", "notes"];
   };
+
+  const direction = (() => {
+    const steps = getSteps();
+    const prevIndex = steps.indexOf(previousSegmentRef.current);
+    const currentIndex = steps.indexOf(currentSegment);
+
+    if (prevIndex !== -1 && currentIndex !== -1) {
+      return currentIndex >= prevIndex ? 1 : -1;
+    }
+
+    return 1;
+  })();
+
+  useEffect(() => {
+    previousSegmentRef.current = currentSegment;
+  }, [currentSegment]);
 
   const navigateTo = (segment) => Nav(`${BASE}/${segment}`);
 
@@ -53,7 +70,6 @@ const NewOrder = () => {
       await form.validateFields();
 
       const { typeOfCloth } = form.getFieldsValue(true);
-
       if (!typeOfCloth) {
         openNotification("error", "topRight", "Error", "Select cloth type");
         return;
@@ -61,6 +77,8 @@ const NewOrder = () => {
 
       const steps = getSteps();
       const index = steps.indexOf(currentSegment);
+      console.log(currentSegment);
+      console.log(location.pathname);
       setOrder(form.getFieldsValue(true));
 
       if (index !== -1 && index < steps.length - 1) {
@@ -80,12 +98,15 @@ const NewOrder = () => {
   const onSubmit = async (values) => {
     try {
       let res = "";
+      let payload = { ...order, ...values };
+
+      console.log(payload);
 
       if (!values?._id) {
         values.status = "Pending";
-        res = await PostAxios("/order/add", values);
+        res = await PostAxios("/order/add", payload);
       } else {
-        res = await PatchAxios("/order/update", values);
+        res = await PatchAxios("/order/update", payload);
       }
 
       if (res) {
@@ -117,10 +138,11 @@ const NewOrder = () => {
           <AnimatePresence mode="wait">
             <motion.div
               key={location.pathname}
-              initial={{ opacity: 0, y: 40, scale: 0.97 }}
-              animate={{ opacity: 1, y: 0, scale: 1 }}
-              exit={{ opacity: 0, y: -40, scale: 0.97 }}
-              transition={{ duration: 0.45, ease: "easeInOut" }}
+              initial={{ opacity: 0, x: direction * 80 }}
+              animate={{ opacity: 1, x: 0 }}
+              exit={{ opacity: 0, x: direction * -80 }}
+              transition={{ duration: 0.35, ease: [0.4, 0.0, 0.2, 1] }}
+              style={{ position: "relative" }}
             >
               <Routes>
                 <Route

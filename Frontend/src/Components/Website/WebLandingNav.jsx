@@ -53,7 +53,6 @@ const WebLandingNav = () => {
         </div>
 
         <div className="wlp-nav-right">
-          <HiMagnifyingGlass className="wlp-nav-icon wlp-nav-search" aria-hidden />
           <Button
             type="primary"
             className="wlp-nav-cta-desktop wlp-btn-primary"

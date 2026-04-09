@@ -14,7 +14,7 @@ const FooterSection = () => {
   return (
     <div
       style={{
-        background: "#111827",
+        background: "linear-gradient(135deg, #1e293b 0%, #11181c 40%, rgb(30, 77, 185) 100%)",
         color: "#ffffff",
         padding: "80px 20px 40px 20px",
       }}

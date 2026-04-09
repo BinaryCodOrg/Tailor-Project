@@ -13,6 +13,13 @@ import WebLandingNav from "./WebLandingNav";
 import FooterSection from "./FooterSection";
 import "./WebLandingPage.css";
 import UsamaProfileImage from "../../assets/Images/Team/usama.png";
+import Testimonials from "./Testimonials";
+import StatsSection from "./StatsSection";
+import HeroSection from "./HeroSection";
+import HowItWorks from "./HowItWorks";
+import PlanSupportBreakdown from "./PlanSupportBreakdown";
+import FinalCTA from "./FinalCTA";
+import FeaturesSection from "./FeaturesSection";
 
 const IMAGES = {
   hero: "https://images.unsplash.com/photo-1558171813-4c088753af8f?auto=format&fit=crop&w=1920&q=80",
@@ -172,41 +179,7 @@ const WebLandingPage = () => {
       <WebLandingNav />
 
       <Element name="wlp-home">
-        <section className="wlp-hero" aria-label="Hero">
-          <div
-            className="wlp-hero-bg"
-            style={{ backgroundImage: `url(${IMAGES.hero})` }}
-          />
-          <div className="wlp-hero-inner">
-            <h1 className="wlp-serif">
-              Deeper understanding.
-              <br />
-              Better fittings.
-            </h1>
-            <p>
-              Stitch &amp; Stone helps tailoring teams digitise measurements,
-              orders, and delivery timelines—so you resolve more jobs with less
-              chaos.
-            </p>
-            <div className="wlp-hero-actions">
-              <Button
-                type="primary"
-                size="large"
-                className="wlp-btn-primary"
-                onClick={() => navigate("/auth/login")}
-              >
-                Get Started
-              </Button>
-              <Button
-                size="large"
-                className="wlp-btn-ghost"
-                onClick={() => navigate("/admin/dashboard")}
-              >
-                View dashboard
-              </Button>
-            </div>
-          </div>
-        </section>
+        <HeroSection image={IMAGES.hero} />
       </Element>
 
       <Element name="wlp-about">
@@ -268,7 +241,7 @@ const WebLandingPage = () => {
                   <Button
                     type="primary"
                     className="wlp-btn-primary"
-                    onClick={() => navigate("/admin/orders/new/details")}
+                    onClick={() => navigate("/auth/login")}
                   >
                     Start an order
                   </Button>
@@ -303,7 +276,7 @@ const WebLandingPage = () => {
       </Element>
 
       <Element name="wlp-services">
-        <section className="wlp-services" id="wlp-services">
+        {/* <section className="wlp-services" id="wlp-services">
           <div className="wlp-container" style={{ textAlign: "center" }}>
             <h2 className="wlp-serif wlp-section-title">
               Explore our practice areas
@@ -335,50 +308,15 @@ const WebLandingPage = () => {
               ))}
             </div>
           </div>
-        </section>
+        </section> */}
+        <FeaturesSection />
       </Element>
 
       <section className="wlp-stats-light" aria-label="Impact">
-        <div className="wlp-container">
-          <div className="wlp-stats-row">
-            <div>
-              <div className="wlp-stat-num">1,500+</div>
-              <div className="wlp-stat-label">Orders coordinated</div>
-            </div>
-            <div>
-              <div className="wlp-stat-num">250+</div>
-              <div className="wlp-stat-label">Workshop teams</div>
-            </div>
-            <div>
-              <div className="wlp-stat-num">98%</div>
-              <div className="wlp-stat-label">
-                On-time delivery satisfaction
-              </div>
-            </div>
-          </div>
-          <div className="wlp-partners">
-            {[
-              "Atelier One",
-              "Thread & Co",
-              "Verve Clothiers",
-              "Northline",
-              "Maison Cut",
-            ].map((name) => (
-              <span
-                key={name}
-                style={{
-                  fontWeight: 700,
-                  fontSize: "0.95rem",
-                  color: "#64748b",
-                  letterSpacing: "0.04em",
-                }}
-              >
-                {name}
-              </span>
-            ))}
-          </div>
-        </div>
+        <StatsSection />
       </section>
+
+      <HowItWorks />
 
       <section className="wlp-skills" aria-label="Expertise">
         <div className="wlp-container">
@@ -429,7 +367,7 @@ const WebLandingPage = () => {
         </div>
       </section>
 
-      <section className="wlp-testimonials" aria-label="Testimonials">
+      {/* <section className="wlp-testimonials" aria-label="Testimonials">
         <div className="wlp-container" style={{ textAlign: "center" }}>
           <h2 className="wlp-serif wlp-section-title">What our clients say</h2>
           <p className="wlp-section-sub">
@@ -451,7 +389,8 @@ const WebLandingPage = () => {
             ))}
           </div>
         </div>
-      </section>
+      </section> */}
+      <Testimonials />
 
       <section className="wlp-team" aria-label="Team">
         <div className="wlp-container" style={{ textAlign: "center" }}>
@@ -470,15 +409,6 @@ const WebLandingPage = () => {
                 </div>
               </div>
             ))}
-          </div>
-          <div className="wlp-center-actions">
-            <Button
-              type="primary"
-              className="wlp-btn-primary"
-              onClick={() => navigate("/auth/login")}
-            >
-              View all members
-            </Button>
           </div>
         </div>
       </section>
@@ -502,7 +432,14 @@ const WebLandingPage = () => {
             <p style={{ color: "#64748b", margin: "8px 0 16px" }}>
               Call us directly
             </p>
-            <p className="wlp-consult-phone">+92 317 7014574</p>
+            <p
+              className="wlp-consult-phone"
+              onClick={() => {
+                window.open("https://wa.me/923177014574", "_blank");
+              }}
+            >
+              +92 317 7014574
+            </p>
           </div>
         </div>
       </section>
@@ -588,7 +525,7 @@ const WebLandingPage = () => {
         </section>
       </Element>
 
-      <section className="wlp-blog" aria-label="Blog">
+      <section className="wlp-blog d-none" aria-label="Blog">
         <div className="wlp-container">
           <h2
             className="wlp-serif wlp-section-title"
@@ -637,6 +574,7 @@ const WebLandingPage = () => {
           </div>
         </div>
       </section>
+      <PlanSupportBreakdown />
 
       <FooterSection />
     </div>

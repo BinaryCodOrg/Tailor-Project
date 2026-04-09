@@ -102,7 +102,17 @@ const PlanSupportBreakdown = () => {
   return (
     <div style={{ padding: "100px 20px", background: "#ffffff" }}>
       <div style={{ textAlign: "center", marginBottom: 60 }}>
-        <Title level={2}>How We Handle Support Across Plans</Title>
+        <Title
+          level={2}
+          style={{
+            fontFamily: "Fraunces, serif",
+            fontSize: "clamp(1.75rem, 4vw, 2.5rem)",
+            color: "rgb(15, 23, 42)",
+            fontWeight: 700,
+          }}
+        >
+          How We Handle Support Across Plans
+        </Title>
         <Text type="secondary">
           Transparent issue resolution and support differences explained
           clearly.

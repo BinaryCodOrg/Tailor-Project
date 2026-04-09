@@ -10,14 +10,14 @@ const KameezMeasurements = ({ prevStep, nextStep }) => {
   const [activeField, setActiveField] = useState(null);
 
   const measurementFields = [
-    { label: "Length", name: "length", part: "length" },
-    { label: "Shoulder", name: "shoulder", part: "shoulder" },
-    { label: "Chest", name: "chest", part: "chest" },
-    { label: "Waist", name: "waist", part: "waist" },
-    { label: "Hip / Ghara", name: "hip", part: "hip" },
-    { label: "Sleeve Length", name: "sleeveLength", part: "sleeve" },
-    { label: "Sleeve Round", name: "sleeveRound", part: "sleeveRound" },
-    { label: "Armhole (Monda)", name: "armhole", part: "armhole" },
+    { label: "Length", name: "kameezLength", part: "length" },
+    { label: "Shoulder", name: "kameezShoulder", part: "shoulder" },
+    { label: "Chest", name: "kameezChest", part: "chest" },
+    { label: "Waist", name: "kameezWaist", part: "waist" },
+    { label: "Hip / Ghara", name: "kameezHip", part: "hip" },
+    { label: "Sleeve Length", name: "kameezSleeveLength", part: "sleeve" },
+    { label: "Sleeve Round", name: "kameezSleeveRound", part: "sleeveRound" },
+    { label: "Armhole (Monda)", name: "kameezArmhole", part: "armhole" },
   ];
 
   return (
@@ -57,7 +57,7 @@ const KameezMeasurements = ({ prevStep, nextStep }) => {
             <Col xs={24} md={12}>
               <Form.Item
                 label="Collar Style"
-                name="collarStyle"
+                name="kameezCollarStyle"
                 rules={[{ required: true }]}
               >
                 <Select
@@ -74,7 +74,7 @@ const KameezMeasurements = ({ prevStep, nextStep }) => {
             <Col xs={24} md={12}>
               <Form.Item
                 label="Button Type"
-                name="buttonType"
+                name="kameezButtonType"
                 rules={[{ required: true }]}
               >
                 <Select size="large">
@@ -88,7 +88,7 @@ const KameezMeasurements = ({ prevStep, nextStep }) => {
       </Col>
 
       {/* RIGHT SIDE KAMEEZ SVG */}
-      <Col xs={24} md={10} >
+      <Col xs={24} md={10}>
         <KameezPreview activeField={activeField} />
       </Col>
     </Row>

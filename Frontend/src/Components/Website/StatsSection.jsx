@@ -4,23 +4,43 @@ import { Row, Col, Typography } from "antd";
 const { Title, Text } = Typography;
 
 const StatsSection = () => {
-  const stats = [
-    { label: "Active Tailors", value: "2,500+" },
-    { label: "Measurements Stored", value: "120K+" },
-    { label: "Patterns Generated", value: "45K+" },
-    { label: "Countries Served", value: "18+" },
-  ];
-
   return (
-    <div style={{ padding: "80px 20px", background: "#f8fafc" }}>
-      <Row justify="center" gutter={[40, 40]}>
-        {stats.map((item, i) => (
-          <Col key={i} xs={12} md={6} style={{ textAlign: "center" }}>
-            <Title style={{ color: "#2563eb" }}>{item.value}</Title>
-            <Text>{item.label}</Text>
-          </Col>
+    <div className="wlp-container">
+      <div className="wlp-stats-row">
+        <div>
+          <div className="wlp-stat-num">1,500+</div>
+          <div className="wlp-stat-label">Orders coordinated</div>
+        </div>
+        <div>
+          <div className="wlp-stat-num">250+</div>
+          <div className="wlp-stat-label">Workshop teams</div>
+        </div>
+        <div>
+          <div className="wlp-stat-num">98%</div>
+          <div className="wlp-stat-label">On-time delivery satisfaction</div>
+        </div>
+      </div>
+      <div className="wlp-partners">
+        {[
+          "Atelier One",
+          "Thread & Co",
+          "Verve Clothiers",
+          "Northline",
+          "Maison Cut",
+        ].map((name) => (
+          <span
+            key={name}
+            style={{
+              fontWeight: 700,
+              fontSize: "0.95rem",
+              color: "#64748b",
+              letterSpacing: "0.04em",
+            }}
+          >
+            {name}
+          </span>
         ))}
-      </Row>
+      </div>
     </div>
   );
 };

@@ -1,6 +1,6 @@
 const express = require('express');
 const mongoose = require('mongoose');
-const orderRoutes = require('./routes/order');
+const authRoutes = require('./routes/auth');
 
 require('dotenv').config();
 var cors = require('cors');
@@ -20,7 +20,7 @@ app.get('/', (req, res) => {
     res.send('Backend is working perfectly');
 });
 
-app.use('/api/order', orderRoutes);
+app.use('/api/auth', authRoutes);
 
 
 const PORT = process.env.PORT || 7000;

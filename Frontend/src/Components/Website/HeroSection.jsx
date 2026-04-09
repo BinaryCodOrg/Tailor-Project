@@ -4,48 +4,44 @@ import { useNavigate } from "react-router-dom";
 
 const { Title, Paragraph } = Typography;
 
-const HeroSection = () => {
-  let nev = useNavigate();
+const HeroSection = ({ image }) => {
+  let navigate = useNavigate();
   return (
-    <div
-      style={{
-        background: "linear-gradient(135deg, #2563eb 0%, #1e3a8a 100%)",
-        padding: "120px 20px",
-        textAlign: "center",
-        color: "#fff",
-      }}
-    >
-      <Title style={{ color: "#fff", fontSize: 48 }}>
-        Digitize Your Tailoring Business
-      </Title>
-
-      <Paragraph style={{ color: "#dbeafe", fontSize: 18 }}>
-        Manage measurements, generate patterns, track orders, and scale your
-        tailoring business with Tailor Project.
-      </Paragraph>
-
-      <div style={{ marginTop: 30 }}>
-        <Button
-          size="large"
-          type="primary"
-          style={{
-            background: "#fff",
-            color: "#2563eb",
-            border: "none",
-            height: 50,
-            fontWeight: 600,
-            marginRight: 15,
-          }}
-          onClick={() => nev("/auth/login")}
-        >
-          Get Started
-        </Button>
-
-        <Button size="large" ghost onClick={() => nev("/admin/dashboard")}>
-          Learn More
-        </Button>
+    <section className="wlp-hero" aria-label="Hero">
+      <div
+        className="wlp-hero-bg"
+        style={{ backgroundImage: `url(${image})` }}
+      />
+      <div className="wlp-hero-inner">
+        <h1 className="wlp-serif">
+          Deeper understanding.
+          <br />
+          Better fittings.
+        </h1>
+        <p>
+          Stitch &amp; Stone helps tailoring teams digitise measurements,
+          orders, and delivery timelines—so you resolve more jobs with less
+          chaos.
+        </p>
+        <div className="wlp-hero-actions">
+          <Button
+            type="primary"
+            size="large"
+            className="wlp-btn-primary"
+            onClick={() => navigate("/auth/login")}
+          >
+            Get Started
+          </Button>
+          <Button
+            size="large"
+            className="wlp-btn-ghost"
+            onClick={() => navigate("/admin/dashboard")}
+          >
+            View dashboard
+          </Button>
+        </div>
       </div>
-    </div>
+    </section>
   );
 };
 

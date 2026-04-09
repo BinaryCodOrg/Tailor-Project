@@ -32,7 +32,17 @@ const Testimonials = () => {
     <div style={{ padding: "100px 20px", background: "#f8fafc" }}>
       {/* Section Heading */}
       <div style={{ textAlign: "center", marginBottom: 70 }}>
-        <Title level={2}>What Tailors Say About Us</Title>
+        <Title
+          level={2}
+          style={{
+            fontFamily: "Fraunces, serif",
+            fontSize: "clamp(1.75rem, 4vw, 2.5rem)",
+            color: "rgb(15, 23, 42)",
+            fontWeight: 700,
+          }}
+        >
+          What Tailors Say About Us
+        </Title>
         <Text type="secondary">
           Trusted by modern tailoring businesses worldwide.
         </Text>
@@ -58,6 +68,7 @@ const Testimonials = () => {
                 defaultValue={item.rating}
                 style={{ color: "#2563eb", marginBottom: 15 }}
               />
+              <br />
 
               {/* Feedback */}
               <Text style={{ color: "#4b5563", fontSize: 15 }}>

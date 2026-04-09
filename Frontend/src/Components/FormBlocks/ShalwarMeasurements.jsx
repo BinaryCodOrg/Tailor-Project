@@ -10,11 +10,11 @@ const ShalwarMeasurements = () => {
   const [activeField, setActiveField] = useState(null);
 
   const fields = [
-    { label: "Outseam Length", name: "length", part: "length" },
-    { label: "Seat Width", name: "hip", part: "hip" },
-    { label: "Leg Opening (Poncha)", name: "poncha", part: "bottom" },
-    { label: "Hip / Thigh Width (Asan)", name: "asan", part: "thigh" },
-    { label: "Cuff Width", name: "kuff", part: "bottom" },
+    { label: "Outseam Length", name: "shalwarLength", part: "length" },
+    { label: "Seat Width", name: "shalwarHip", part: "hip" },
+    { label: "Leg Opening (Poncha)", name: "shalwarPoncha", part: "bottom" },
+    { label: "Hip / Thigh Width (Asan)", name: "shalwarAsan", part: "thigh" },
+    { label: "Cuff Width", name: "shalwarKuff", part: "bottom" },
   ];
 
   return (
@@ -32,7 +32,7 @@ const ShalwarMeasurements = () => {
             <Col xs={24} md={12}>
               <Form.Item
                 label="Garment Style"
-                name="style"
+                name="shalwarStyle"
                 rules={[{ required: true }]}
               >
                 <Select size="large">
@@ -64,7 +64,7 @@ const ShalwarMeasurements = () => {
             ))}
 
             <Col xs={24} md={12}>
-              <Form.Item label="Waistband Style" name="patti">
+              <Form.Item label="Waistband Style" name="shalwarPatti">
                 <Select size="large">
                   <Option value="simple">Simple</Option>
                   <Option value="design">Design</Option>
@@ -73,7 +73,7 @@ const ShalwarMeasurements = () => {
             </Col>
 
             <Col xs={24} md={12}>
-              <Form.Item label="Pocket Type" name="pocket">
+              <Form.Item label="Pocket Type" name="shalwarPocket">
                 <Select size="large">
                   <Option value="none">None</Option>
                   <Option value="side">Side Pocket</Option>

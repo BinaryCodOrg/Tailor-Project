@@ -30,7 +30,17 @@ const HowItWorks = () => {
     <div style={{ padding: "100px 20px", background: "#f8fafc" }}>
       {/* Section Heading */}
       <div style={{ textAlign: "center", marginBottom: 80 }}>
-        <Title level={2}>How Tailor Project Works</Title>
+        <Title
+          level={2}
+          style={{
+            fontFamily: "Fraunces, serif",
+            fontSize: "clamp(1.75rem, 4vw, 2.5rem)",
+            color: "rgb(15, 23, 42)",
+            fontWeight: 700,
+          }}
+        >
+          How Tailor Project Works
+        </Title>
         <Text type="secondary">
           Simple workflow designed for modern tailoring businesses.
         </Text>

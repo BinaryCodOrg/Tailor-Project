@@ -10,9 +10,7 @@ import LandingPage from "./Components/Landing/LandingPage";
 import { useRecoilState, useRecoilValue } from "recoil";
 import { SelectedLang, WebContent } from "./Store/Atom";
 import Language from "./assets/Language/Language";
-import Login from "./Auth/Login";
 import MasonryHero from "./assets/Custom/Masonry/MasonryHero";
-import Register from "./Auth/Register";
 import AuthPage from "./Auth/AuthPage";
 import WebLandingPage from "./Components/Website/WebLandingPage";
 
