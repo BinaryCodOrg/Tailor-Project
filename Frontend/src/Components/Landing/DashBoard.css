@@ -5,6 +5,12 @@
   min-height: 100%;
 }
 
+.db-container{
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+
 .bg-gray{
   background: #f5f6f6;
 }

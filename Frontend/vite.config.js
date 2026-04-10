@@ -10,5 +10,10 @@ export default defineConfig({
     globals: true,
     setupFiles: "./src/test/setup.js",
   },
+  server: {
+    host: true, // ← allows access via IP address
+    port: 5180, // optional: choose your port
+  },
+
   // Ensures relative paths are generated for assets
 });

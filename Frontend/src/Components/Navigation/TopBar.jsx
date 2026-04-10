@@ -11,7 +11,7 @@ const TopBar = ({ collapsed, setCollapsed }) => {
   return (
     <header className="pe-2 py-2">
       <div className="topbar">
-        <div className="topbar-inner">
+        <div className="topbar-inner ">
           {/* Search */}
           <div className="topbar-search-wrap">
             <HiMagnifyingGlass className="topbar-search-icon" size={18} />
