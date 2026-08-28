@@ -8,7 +8,7 @@ import { Link, useNavigate } from "react-router-dom";
 const Login = () => {
   let nav = useNavigate()
   const onFinish = (values) => {
-    console.log("Login Data:", values);
+    // console.log("Login Data:", values);
     nav("/admin/dashboard")
   };
 
