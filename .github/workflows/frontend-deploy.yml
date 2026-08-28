@@ -38,6 +38,9 @@ jobs:
         working-directory: Frontend
         run: npm run build
 
+      - name: Create CNAME file for custom domain
+        run: echo "tailer.binarycod.com" > Frontend/dist/CNAME
+
       - name: Check build output
         run: ls -la Frontend/dist
 
