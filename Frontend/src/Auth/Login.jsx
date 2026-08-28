@@ -3,11 +3,13 @@ import { Form, Input, Button, Checkbox } from "antd";
 import { MailOutlined, LockOutlined } from "@ant-design/icons";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./Login.css";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const Login = () => {
+  let nav = useNavigate()
   const onFinish = (values) => {
     console.log("Login Data:", values);
+    nav("/admin/dashboard")
   };
 
   return (

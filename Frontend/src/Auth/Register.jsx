@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Form, Input, Button, Checkbox, Divider } from "antd";
 import { MailOutlined, LockOutlined } from "@ant-design/icons";
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -6,8 +6,14 @@ import "./Login.css";
 import { Link } from "react-router-dom";
 
 const Register = () => {
+  const [loading, setLoading] = useState(false);
   const onFinish = (values) => {
-    console.log("registration Data:", values);
+    setLoading(true);
+    try { } catch (err) {
+      console.log(err);
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -60,6 +66,8 @@ const Register = () => {
           size="large"
           block
           className="login-btn"
+          loading={loading}
+          disabled={loading}
         >
           Register
         </Button>

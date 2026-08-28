@@ -1,6 +1,6 @@
 const express = require('express');
 const mongoose = require('mongoose');
-const orderRoutes = require('./routes/order');
+// const orderRoutes = require('./routes/order');
 const userRoutes = require('./routes/user');
 const employeeRoutes = require('./routes/employee');
 const clientRoutes = require('./routes/client');
@@ -27,7 +27,7 @@ app.get('/', (req, res) => {
 
 app.use('/api/user', userRoutes);
 app.use(auth); // 👈 applies to all routes
-app.use('/api/order', orderRoutes);
+// app.use('/api/order', orderRoutes);
 app.use('/api/employee', employeeRoutes);
 
 app.use('/api/client', clientRoutes);

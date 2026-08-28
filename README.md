@@ -105,4 +105,4 @@ User visit public and Home page
 
 ## Author
 
-[BinaryCod](https://binarycod.com)
+[BinaryCod](https://tailer.binarycod.com/)

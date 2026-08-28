@@ -22,11 +22,7 @@ function App() {
   let Lang = Language;
 
   useEffect(() => {
-    // let cLocation = location.pathname;
-
-    // console.log(cLocation)
-
-    // Automatically scroll to "test1" when the component mounts
+        // Automatically scroll to "test1" when the component mounts
     scroller.scrollTo("test1", {
       duration: 800, // Animation duration in milliseconds
       delay: 0, // Delay before scroll starts

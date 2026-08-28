@@ -1,0 +1,13 @@
+{
+    "name": "Tailor",
+    "private": true,
+    "version": "0.0.0",
+    "scripts": {
+        "dev": "vite",
+        "build": "vite build",
+        "start": "npx concurrently \"cd Frontend && npm run dev\" \"cd Backend && npm run dev\""
+    },
+    "devDependencies": {
+        "concurrently": "^8.2.0"
+    }
+}
